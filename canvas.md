@@ -1,0 +1,15 @@
+# Canvas — DeployDaily · Track D
+
+> Điền ở guide bước 1.4. CP1 17:00 Thứ Sáu 27/11: nộp bản đầu, đủ 7 dòng (dòng 4 được ghi giả thuyết + nguồn sẽ kiểm).
+> CP2 19:30 Thứ Sáu 27/11: cập nhật (số bằng chứng đầu, lát cắt đã chốt) và điền dòng "Đã đổi gì so với CP1".
+
+| # | Dòng | Nhóm điền |
+|---|---|---|
+| 1 | Track + lát cắt dự kiến | **Track D · Thương mại điện tử** — D1: xử lý khiếu nại đơn giao đồ ăn bị **thiếu / sai món**, đề xuất phương án **trong hạn mức chính sách**, vượt hạn mức hoặc ca nhạy cảm thì chuyển nhân viên. |
+| 2 | Người dùng chính (một vai cụ thể — không phải "học viên nói chung") | Sinh viên / người đi làm **đặt đồ ăn qua app (ShopeeFood, GrabFood, BeFood…) vài lần mỗi tuần**, vừa nhận một đơn bị thiếu hoặc sai món và đang muốn đòi lại phần đó ngay trong app. |
+| 3 | Pain một câu: ai — đang làm gì — vướng đâu — hậu quả | Người đặt đồ ăn **vừa nhận đơn thiếu / sai món** → phải khiếu nại qua nhiều bước menu, chờ nhân viên trả lời, có khi phải nhắn qua lại quán và shipper → **mất thời gian giữa bữa ăn, thường chỉ nhận voucher hoặc hoàn không đúng phần thiếu, nhiều người bỏ qua luôn và mất tiền**; phía quán thì có lúc bị trừ tiền dù giao đúng. |
+| 4 | Bằng chứng đầu — CP1: giả thuyết + nguồn sẽ kiểm · CP2: số đầu tiên + 1 trích dẫn | **Giả thuyết** (`evidence/hypothesis.md`): ≥30% người đặt đồ ăn gặp đơn thiếu / sai món trong 1 tháng qua, và ≥ một nửa số đó mất >15 phút, không được hoàn đúng phần thiếu, hoặc bỏ qua không khiếu nại. **Nguồn sẽ kiểm:** khảo sát ≥20 người ngoài nhóm (nguồn chính, `evidence/survey/questions.md`) · phỏng vấn ≥3 người + 1 chủ quán (kiểm lại, `evidence/interviews/kich-ban.md`) · đếm 100 review Google Play (kiểm lại, cách đếm ghi trước ở `evidence/data-mining.md`). |
+| 5 | **Lát cắt MỘT CÂU** (1 người dùng · 1 việc · 1 quyết định AI · 1 kết quả) | **Một người đặt đồ ăn · nhắn khiếu nại đơn vừa nhận bị thiếu một món · AI quyết định hoàn đúng phần thiếu trong hạn mức, hỏi thêm thông tin, hay chuyển nhân viên · khách nhận lời xin lỗi kèm số tiền hoàn đúng theo chính sách, hoặc biết rõ đã được chuyển người.** |
+| 6 | AI tự làm đến đâu + 1 dòng lý do: sai thì ai chịu gì | **AI tự làm khi chắc, chuyển người khi không:** tự đề xuất hoàn khi món báo thiếu có trong đơn và số tiền nằm trong hạn mức (kiểm bằng code, không để model tự nhẩm). Vượt hạn mức, khách khiếu nại nhiều lần trong tháng, dị vật / nghi ngộ độc, hoặc khách không đồng ý → chuyển nhân viên. *Lý do:* hoàn quá tay thì quán mất tiền; chuyển hết cho người thì khách chờ lâu với khoản nhỏ — đa số ca là lành và nhỏ, số ít ca hiểm cần người. |
+| 7 | Phân công có tên | **[Tên TV1] (đội trưởng):** khảo sát + tổng hợp bằng chứng · **[Tên TV2]:** phỏng vấn người dùng + chủ quán · **[Tên TV3]:** đếm review + bảng impact · **[Tên TV4]:** dựng data giả, khung code `run.py` · *(thay bằng tên thật, khớp `TEAMS.md`)* |
+| — | *(CP2)* Đã đổi gì so với CP1 | |
