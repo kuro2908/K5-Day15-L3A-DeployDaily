@@ -7,6 +7,12 @@
 - **Kênh gửi:** __ (vd nhóm Zalo / Discord lớp L3A, L3B, người thân) · **Giờ mở form:** __ · **Giờ chốt:** __ (trước 09:00 Thứ Bảy 28/11)
 - **Kết quả:** xuất Google Sheets → `evidence/survey/results.csv` (đã xoá cột liên hệ ở câu 12 và cột dấu thời gian nếu nhận ra được người).
 
+## Bản thực tế đã gửi (ghi sau khi chạy form)
+
+Nhóm rút gọn form cho người trả lời đỡ mất thời gian. Câu **đã giữ**: 1, 2, 3, 4, 5, 5b, 6, 8, 9. Câu **đã bỏ**: 5a (đặt hộ nhóm, ăn chay / dị ứng), 7 (vì sao bỏ qua), 10 (trị giá phần thiếu), 11 (điều khó chịu nhất — tự luận), 12 (hẹn phỏng vấn thêm).
+Hệ quả: không có số tiền mỗi lần mất (câu 10) → impact tiền ghi *(tự ước tính)*; không có trích dẫn nguyên văn từ khảo sát (câu 11); hướng D2 trong bảng impact không có số khảo sát (câu 5a).
+Số người trả lời: **32**. Kết quả: `ket-qua-tong-hop.md` · log từng câu trả lời: `results.csv` *(chờ xuất)*.
+
 ## Lời mở đầu của form (dán vào phần mô tả)
 
 > Nhóm mình đang tìm hiểu chuyện **đặt đồ ăn qua app** của mọi người trong tháng vừa rồi. Mất khoảng 2 phút, không thu tên hay số điện thoại. Không có câu trả lời đúng/sai — bạn nhớ sao ghi vậy, không nhớ thì chọn "không nhớ". Cảm ơn bạn!
