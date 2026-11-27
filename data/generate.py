@@ -1,7 +1,7 @@
 """Sinh dữ liệu giả (synthetic) cho bản chạy thử — chạy: python data/generate.py
 
 Mọi tên quán, tên món, mã đơn, mã khách đều là DỰNG ("App Mẫu", "Quán Mẫu …"), không phải dữ liệu thật.
-- Đơn kịch bản DH1001–DH1016: viết tay, mỗi đơn phục vụ một câu thử trong eval/benchmark.csv.
+- Đơn kịch bản DH1001–DH1020: viết tay, mỗi đơn phục vụ một câu thử trong eval/benchmark.csv.
 - Đơn nền DH2001–DH2030: sinh ngẫu nhiên với SEED cố định, để dữ liệu không "quá sạch" và dùng cho simulate.
 Chạy lại luôn ra cùng 3 file: data/orders.json · data/policy.json · data/complaint_history.json.
 """
@@ -79,6 +79,11 @@ SCENARIO = [
     order("DH1014", "U014", "Quán Mẫu Gà Rán", [m("Combo gà rán 3 miếng", 129000), m("Pepsi", 15000)], D + "18:00", D + "17:58"),
     order("DH1015", "U015", "Quán Mẫu Trà Sữa", [m("Trà sữa trân châu", 35000, 3)], D + "15:00", D + "15:31"),
     order("DH1016", "U016", "Quán Mẫu Bún Chả", [m("Bún chả Hà Nội", 50000), m("Nem rán", 12000, 4)], D + "12:00", D + "11:58"),
+    # Thêm sau CP2 (27/11 tối) cho câu thử B22–B25 — chỉ thêm đơn mới, không đổi đơn cũ
+    order("DH1017", "U017", "Quán Mẫu Cơm Tấm", [m("Cơm sườn", 45000), m("Trà đá", 5000), m("Chè thái", 25000)], D + "12:00", D + "11:55"),
+    order("DH1018", "U018", "Quán Mẫu Lẩu Nướng", [m("Combo lẩu thái 2 người", 159000), m("Nước ngọt", 15000)], D + "18:00", D + "18:10"),
+    order("DH1019", "U019", "Quán Mẫu Bún Bò", [m("Bún bò Huế", 50000)], D + "12:00", D + "13:30"),
+    order("DH1020", "U020", "Quán Mẫu Mì Cay", [m("Mì cay hải sản", 59000), m("Trà đào", 39000)], D + "17:00", D + "18:01"),
 ]
 
 HISTORY = {  # số khiếu nại 30 ngày qua của từng khách kịch bản (dựng)
@@ -86,6 +91,8 @@ HISTORY = {  # số khiếu nại 30 ngày qua của từng khách kịch bản 
     "U004": [], "U005": [], "U006": [],
     "U007": [{"ngay": d, "loai": "thieu_mon", "ket_qua": "hoan tien"} for d in ("2026-11-03", "2026-11-09", "2026-11-15", "2026-11-22")],
     "U008": [], "U009": [], "U010": [], "U011": [], "U012": [], "U013": [], "U014": [], "U015": [], "U016": [],
+    "U017": [], "U018": [], "U020": [],
+    "U019": [{"ngay": d, "loai": "giao_tre", "ket_qua": "voucher 20000"} for d in ("2026-11-05", "2026-11-14", "2026-11-21")],
 }
 
 MENU = [("Cơm sườn", 45000), ("Phở bò", 55000), ("Bún bò Huế", 50000), ("Trà sữa trân châu", 35000), ("Bánh mì thịt", 25000),

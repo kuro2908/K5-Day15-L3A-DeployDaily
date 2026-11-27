@@ -340,6 +340,94 @@
    "gio_giao": "2026-11-27T11:58",
    "trang_thai": "da_giao"
   },
+  "DH1017": {
+   "order_id": "DH1017",
+   "user_id": "U017",
+   "quan": "Quán Mẫu Cơm Tấm",
+   "mon": [
+    {
+     "ten_mon": "Cơm sườn",
+     "don_gia": 45000,
+     "so_luong": 1
+    },
+    {
+     "ten_mon": "Trà đá",
+     "don_gia": 5000,
+     "so_luong": 1
+    },
+    {
+     "ten_mon": "Chè thái",
+     "don_gia": 25000,
+     "so_luong": 1
+    }
+   ],
+   "phi_ship": 15000,
+   "tong_tien": 90000,
+   "gio_hen": "2026-11-27T12:00",
+   "gio_giao": "2026-11-27T11:55",
+   "trang_thai": "da_giao"
+  },
+  "DH1018": {
+   "order_id": "DH1018",
+   "user_id": "U018",
+   "quan": "Quán Mẫu Lẩu Nướng",
+   "mon": [
+    {
+     "ten_mon": "Combo lẩu thái 2 người",
+     "don_gia": 159000,
+     "so_luong": 1
+    },
+    {
+     "ten_mon": "Nước ngọt",
+     "don_gia": 15000,
+     "so_luong": 1
+    }
+   ],
+   "phi_ship": 15000,
+   "tong_tien": 189000,
+   "gio_hen": "2026-11-27T18:00",
+   "gio_giao": "2026-11-27T18:10",
+   "trang_thai": "da_giao"
+  },
+  "DH1019": {
+   "order_id": "DH1019",
+   "user_id": "U019",
+   "quan": "Quán Mẫu Bún Bò",
+   "mon": [
+    {
+     "ten_mon": "Bún bò Huế",
+     "don_gia": 50000,
+     "so_luong": 1
+    }
+   ],
+   "phi_ship": 15000,
+   "tong_tien": 65000,
+   "gio_hen": "2026-11-27T12:00",
+   "gio_giao": "2026-11-27T13:30",
+   "trang_thai": "da_giao"
+  },
+  "DH1020": {
+   "order_id": "DH1020",
+   "user_id": "U020",
+   "quan": "Quán Mẫu Mì Cay",
+   "mon": [
+    {
+     "ten_mon": "Mì cay hải sản",
+     "don_gia": 59000,
+     "so_luong": 1
+    },
+    {
+     "ten_mon": "Trà đào",
+     "don_gia": 39000,
+     "so_luong": 1
+    }
+   ],
+   "phi_ship": 15000,
+   "tong_tien": 113000,
+   "gio_hen": "2026-11-27T17:00",
+   "gio_giao": "2026-11-27T18:01",
+   "trang_thai": "da_giao"
+  },
   "DH2001": {
    "order_id": "DH2001",
    "user_id": "U100",

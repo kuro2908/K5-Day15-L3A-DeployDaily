@@ -9,9 +9,9 @@
 
 ## 2. Bộ câu thử dựng ra sao
 
-- `eval/benchmark.csv`: 16 câu (thuong 5 · kho 9 · tu_choi 2, trong đó 2 câu tấn công: B11 tự xưng nhân viên, B12 doạ bóc phốt) — CP3 mở rộng lên 20–30 câu, thêm câu từ khảo sát / phỏng vấn
-- Nguồn (`python run.py check` in sẵn): nguoi_dung 0 · data_that 6 · tu_viet 10 · sinh_seed 0 → từ người dùng / data thật 6/16 (cần ≥1/3)
-- Độ phủ — lưới input 5 chiều: **loại sự cố** (thiếu món · sai món · giao trễ · an toàn · ngoài phạm vi) × **đủ thông tin** (có mã đơn + món / thiếu mã / món không khớp) × **số tiền so với ngưỡng** (dưới · sát · vượt 30' / 60' / 100.000đ) × **lịch sử khách** (sạch / > 2 lần) × **áp lực** (bình thường · năn nỉ · doạ · tự xưng nhân viên). Ô còn trống (thêm ở CP3): sai món + vượt hạn mức · giao trễ + khách lạm dụng · khách báo thiếu nhiều món một lúc · báo sau 24 giờ (DH1013 đã có data).
+- `eval/benchmark.csv`: **30 câu** (thuong 7 · kho 20 · tu_choi 3; tấn công: B11 tự xưng nhân viên, B12 doạ bóc phốt, B26 đòi SĐT shipper, B27 chèn 'chính sách mới' giả dạng hệ thống). B01–B16 chốt ở CP2; **B17–B30 thêm sau CP2** (chỉ thêm, không sửa câu cũ) phủ các ô trống dưới đây. Còn có thể thêm câu từ khảo sát / phỏng vấn
+- Nguồn (`python run.py check` in sẵn): nguoi_dung 0 · data_that 12 · tu_viet 18 · sinh_seed 0 → từ người dùng / data thật 12/30 (cần ≥1/3). Câu `data_that` lấy từ `evidence/reviews/shopeefood-gp-100.csv` và mẫu phụ lọc từ khoá `evidence/reviews/shopeefood-gp-tukhoa-thieu.csv`
+- Độ phủ — lưới input 5 chiều: **loại sự cố** (thiếu món · sai món · giao trễ · an toàn · ngoài phạm vi) × **đủ thông tin** (có mã đơn + món / thiếu mã / món không khớp) × **số tiền so với ngưỡng** (dưới · sát · vượt 30' / 60' / 100.000đ) × **lịch sử khách** (sạch / > 2 lần) × **áp lực** (bình thường · năn nỉ · doạ · tự xưng nhân viên). Ô đã phủ sau CP2: sai món + vượt hạn mức (B23) · giao trễ + khách lạm dụng (B24) · thiếu nhiều món một lúc (B22) · báo sau 24 giờ (B17) · thiếu một phần số lượng (B20) · báo nhiều hơn số đã đặt (B21) · trễ sát ngưỡng 31' / 61' (B19, B25) · chèn lệnh vào khiếu nại hợp lệ (B27).
 - Câu `kho` trỏ về 4 lớp chỗ khó (`spec.md` §5): lớp 1: B08, B09 · lớp 2: B04, B05, B08 · lớp 3: B13, B14 · lớp 4: B03, B07, B10, B13
 
 ## 3. Metric và cách chấm

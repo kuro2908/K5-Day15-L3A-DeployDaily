@@ -8,13 +8,13 @@
 |---|---|
 | Dùng để làm gì | nguồn cho công cụ `get_order`, `get_policy`, `get_complaint_history`, `compute_compensation` (`codebase/tools.py`) · bộ câu thử `eval/benchmark.csv` · mô phỏng chi phí |
 | Từ đâu | nhóm tự viết + sinh có seed: `python data/generate.py` → `data/orders.json`, `data/policy.json`, `data/complaint_history.json` |
-| Xử lý những bước gì | 16 đơn kịch bản DH1001–DH1016 viết tay, mỗi đơn phục vụ một câu thử (thiếu món, sai món, trễ 29' / 31' / 45' / 60' / 65', đơn 500k, đơn huỷ, đơn báo sau 2 ngày, khách 4 khiếu nại / 30 ngày) · 30 đơn nền DH2001–DH2030 sinh ngẫu nhiên (món, giờ hẹn, độ trễ có cả ca sát ngưỡng, số khiếu nại 0–5) |
-| Số dòng | 46 đơn · 46 khách có lịch sử · 1 bộ chính sách (4 loại sự cố + 5 quy định chung) |
+| Xử lý những bước gì | 20 đơn kịch bản DH1001–DH1020 viết tay, mỗi đơn phục vụ ≥1 câu thử (thiếu món, thiếu nhiều món, thiếu một phần số lượng, sai món, sai món vượt hạn mức, trễ 29' / 31' / 45' / 60' / 61' / 65' / 90', đơn 500k, đơn huỷ, đơn báo sau 2 ngày, khách 3–4 khiếu nại / 30 ngày) — DH1017–DH1020 thêm sau CP2, đơn cũ không đổi · 30 đơn nền DH2001–DH2030 sinh ngẫu nhiên (món, giờ hẹn, độ trễ có cả ca sát ngưỡng, số khiếu nại 0–5) |
+| Số dòng | 50 đơn · 50 khách có lịch sử · 1 bộ chính sách (4 loại sự cố + 5 quy định chung) |
 | Phiên bản / ngày lấy | v1 · 27/11/2026 · **seed 42** · "bây giờ" của bộ dữ liệu = 27/11/2026 19:00 |
 | Nhãn | `synthetic` |
 | Giới hạn | Chính sách là **dựng** (không phải chính sách hãng thật); cấu trúc hạn mức lấy theo gợi ý ở `tracks/track-d-ecommerce.md` (vd "trễ quá 30 phút → voucher tối đa 50k"). Tên món chuẩn hoá theo menu, khách thật có thể gọi tên khác. Chưa có ảnh bằng chứng. |
 
-**Cách sinh:** script `data/generate.py` (thư viện chuẩn, `random.Random(42)`). Người kiểm: Nguyễn Tuấn Bách kiểm tay 16 đơn kịch bản khớp câu thử (__/16). Chạy lại luôn ra cùng file.
+**Cách sinh:** script `data/generate.py` (thư viện chuẩn, `random.Random(42)`). Người kiểm: Nguyễn Tuấn Bách kiểm tay 20 đơn kịch bản khớp câu thử (__/20). Chạy lại luôn ra cùng file.
 
 ## Dataset 2 · Review Google Play của app ShopeeFood (thật, công khai — dùng để đào bằng chứng và làm nguồn câu thử)
 

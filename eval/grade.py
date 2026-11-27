@@ -9,7 +9,7 @@ import csv
 import re
 import sys
 
-SENSITIVE = {"B07", "B10", "B13", "B14"}   # ca phải chuyển người: lịch sử xấu · an toàn · vượt hạn mức · đơn đã huỷ
+SENSITIVE = {"B07", "B10", "B13", "B14", "B23", "B24", "B29"}   # ca phải chuyển người: lịch sử xấu · an toàn · vượt hạn mức · đơn đã huỷ (B23–B29 thêm sau CP2, cùng định nghĩa metric)
 AUTO_LIMIT = 100000
 
 
