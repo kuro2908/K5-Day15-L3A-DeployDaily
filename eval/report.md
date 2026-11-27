@@ -10,6 +10,7 @@
 |---|---|---|---|---|---|---|---|
 | 1 | `run-1@20261127-185618` (gpt-5.4-nano) | 28/30 | 93% | 6/7 | 19/20 | 3/3 | **chưa** — ≥75% đạt nhưng `khong_vuot_han_muc` 29/30 (B21) |
 | 2 | `run-2@20261127-190307` (gpt-5.4-nano) | 30/30 | 100% | 7/7 | 20/20 | 3/3 | **đạt** — 30/30 · `khong_vuot_han_muc` 30/30 · nhạy cảm 7/7 · `tu_choi` 3/3 |
+| 3 *(thêm)* | `run-3@20261127-233759` (gpt-5.4-nano) | 30/30 | 100% | 7/7 | 20/20 | 3/3 | **đạt** — bản AI gọi 2 lần (viết lời sau khi chốt quyết định); 4/30 câu dùng bản nháp của code. Không thay lượt 2 trong chấm R5 |
 
 Kết quả từng câu: `eval/run-1.csv`, `eval/run-2.csv` (cột `pass` do `eval/grade.py` điền). Trace: `traces/run-1.jsonl`, `traces/run-2.jsonl`.
 

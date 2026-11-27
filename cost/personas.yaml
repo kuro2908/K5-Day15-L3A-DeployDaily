@@ -1,52 +1,51 @@
-# Mô phỏng chi phí khi dùng thật — điền ở guide bước 4.2.
-# Ôn lại: ngày 13, ngày 1, ngày 14 · lab ngày 13, lab ngày 14.
-# Mọi số phải có nguồn (data / phỏng vấn / khảo sát / quy mô khoá có nguồn) hoặc ghi rõ "(tự ước tính)".
-# Chạy: python run.py simulate --try   (10 phiên, kiểm khung — làm trước CP3)
+# Mô phỏng chi phí khi dùng thật — guide bước 4.2.
+# Mọi số có nguồn (khảo sát / nguồn công khai) hoặc ghi rõ "(tự ước tính)". Chi tiết lập luận: spec.md §2.
+# Chạy: python run.py simulate --try   (10 phiên, kiểm khung)
 #       python run.py simulate         (đủ số phiên dưới đây — bản nộp CP4)
-# Thay mọi dòng "(ví dụ)" bằng số và nguồn của nhóm; simulate nhắc nếu còn sót.
 
-sessions: 50        # số phiên mô phỏng — bản nộp ≥50
+sessions: 60        # số phiên mô phỏng — bản nộp ≥50
 seed: 42            # giữ cố định để chạy lại ra cùng chuỗi phiên
 
-users:              # số người dùng thật nếu đưa vào dùng — 3 kịch bản, ở quy mô thật của sản phẩm
-                    # track A: khoá học · track B–F: người dùng của sản phẩm / nhóm nhắm tới, nguồn công khai có link
-  low: 300
-  base: 700
-  high: 1000
-  source: "(ví dụ) track A — thay bằng số của nhóm. Cơ sở: lớp L3 hơn 700 học viên (README hackathon); thấp, cao: (tự ước tính)"
+users:              # số người dùng app giao đồ ăn ở Việt Nam (quy mô thật của sản phẩm), 3 kịch bản
+  low: 16100000
+  base: 17800000
+  high: 21200000
+  source: "thấp: 16,1 triệu người dùng giao đồ ăn online 2023 (Statista, https://statista.com/forecasts/1230471/users-online-food-delivery-vietnam — chưa mở được trang gốc) · cơ sở: 17,8 triệu, dự báo 2025 của chuyên gia DigiFnB (Vietnam News 31/05/2025, https://vietnamnews.vn/economy/1718645/food-apps-invest-strategically-or-be-swept-away-by-price-wars.html, xem 27/11/2026) · cao: 17,8 triệu × 1,19 = 21,2 triệu (tự ước tính theo mức tăng 19% của thị trường năm 2025, Momentum Works qua VnExpress https://e.vnexpress.net/news/business/data-speaks/vietnamese-spend-2-1b-on-food-delivery-in-2025-5011109.html)"
 
-personas:           # ≥3 kiểu người dùng; share cộng lại = 1
-  - name: dung_it
-    share: 0.5              # tỉ lệ người dùng kiểu này
-    uses_per_month: 4       # số phiên / người / tháng
-    turns_per_session: 1    # số lượt hỏi trong một phiên
-    source: "(ví dụ) phỏng vấn P1, P3 — thay bằng nguồn của nhóm"
-  - name: dung_vua
-    share: 0.3
-    uses_per_month: 10
-    turns_per_session: 3
-    source: "(ví dụ) khảo sát n = 24, câu 3"
-  - name: dung_nhieu
-    share: 0.2
-    uses_per_month: 20
-    turns_per_session: 5
-    source: "(ví dụ) data/preclass: đếm số lượt / người — cách đếm ở evidence/data-mining.md"
-# Mỗi lượt hỏi lấy ngẫu nhiên một đầu vào trong eval/benchmark.csv (type thuong và kho).
-# Persona hỏi kiểu riêng: thêm vào persona đó
-#     types: [thuong, kho, tu_choi]
-# hoặc
-#     inputs: ["câu hỏi kiểu 1", "câu hỏi kiểu 2"]
+personas:           # tỉ lệ từ khảo sát câu 2 (29 người có đặt đơn); số phiên khiếu nại / tháng từ câu 4–5
+  - name: dat_it
+    share: 0.42             # 1–8 đơn / tháng: 12/29
+    uses_per_month: 1       # phiên khiếu nại / người / tháng
+    turns_per_session: 1    # một tin báo sự cố là xong
+    types: [thuong, kho]
+    source: "tỉ lệ: khảo sát câu 2 (12/29 đặt 1–8 đơn / tháng) · 1 phiên / tháng: (tự ước tính) từ câu 4–5, mẫu trung bình ≈ 2,0 lần thiếu / sai + 1,5 lần trễ, nhóm đặt ít gặp ít hơn"
+  - name: dat_vua
+    share: 0.41             # 9–15 đơn / tháng: 12/29
+    uses_per_month: 3
+    turns_per_session: 2    # báo sự cố + một lượt hỏi thêm / trả lời câu hỏi lại
+    types: [thuong, kho]
+    source: "tỉ lệ: khảo sát câu 2 (12/29 đặt 9–15 đơn / tháng) · 3 phiên / tháng, 2 lượt / phiên: (tự ước tính) từ câu 4–5"
+  - name: dat_nhieu
+    share: 0.17             # trên 15 đơn / tháng: 5/29
+    uses_per_month: 5
+    turns_per_session: 2
+    types: [thuong, kho, tu_choi]   # nhóm hay khiếu nại: có cả tin doạ / đòi vượt chính sách
+    source: "tỉ lệ: khảo sát câu 2 (5/29 đặt trên 15 đơn / tháng) · 5 phiên / tháng: (tự ước tính) từ câu 4 (8/32 có trên 3 đơn thiếu / sai trong tháng)"
 
-prices:             # USD / 1 triệu token — chép từ further-reading/model-prices.md của repo đề. ≥2 mức model
-  - model: gemini-3.1-flash-lite
-    input: 0.25
-    output: 1.50
-    source: "(ví dụ) https://ai.google.dev/gemini-api/docs/pricing · xem 25/11/2026"
-  - model: gemini-4-hydrogen
-    input: 1.50
-    output: 7.50
-    source: "(ví dụ) https://ai.google.dev/gemini-api/docs/pricing · xem 25/11/2026"
+prices:             # USD / 1 triệu token, giá Standard
+  - model: gpt-5.4-nano      # model đang đo token (bản chạy thử)
+    input: 0.20
+    output: 1.25
+    source: "https://developers.openai.com/api/docs/models/gpt-5.4-nano · xem 27/11/2026 (trang ghi model 'Deprecated' — giá vẫn niêm yết; không có trong bảng giá BTC)"
+  - model: gpt-5-nano        # mức rẻ hơn
+    input: 0.05
+    output: 0.40
+    source: "further-reading/model-prices.md (BTC, OpenAI https://developers.openai.com/api/docs/pricing) · xem 25/11/2026"
+  - model: gpt-5.4-mini      # mức mạnh hơn
+    input: 0.75
+    output: 4.50
+    source: "further-reading/model-prices.md (BTC, OpenAI https://developers.openai.com/api/docs/pricing) · xem 25/11/2026"
 
-usd_to_vnd:         # tuỳ chọn: điền thì bản tóm tắt in thêm tiền Việt
-  rate:
-  source:
+usd_to_vnd:
+  rate: 26000
+  source: "(tự ước tính) xấp xỉ tỉ giá USD/VND cuối 11/2026 — chưa kiểm với ngân hàng"

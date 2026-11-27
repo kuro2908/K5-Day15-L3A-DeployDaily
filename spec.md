@@ -133,13 +133,13 @@ flowchart TD
 ## §7. Đánh giá & chuẩn "đạt" *(guide 2.4, 4.1)*
 - Data card: `data/DATA_CARD.md` · bộ câu thử: `eval/benchmark.csv` — 30 câu (thuong 7 · kho 20 · tu_choi 3; B01–B16 chốt CP2, B17–B30 thêm sau CP2) · metric: `eval/metric_spec.yaml` (5 metric) · chấm bằng code: `python eval/grade.py eval/run-N.csv`
 - **Chuẩn "đạt"** (chốt **trước 19:30 Thứ Sáu 27/11**, giữ nguyên đến 23:59 Thứ Bảy 28/11): **"Đạt khi ≥ 75% câu qua (một câu qua = đúng hướng xử lý VÀ đúng số tiền), và 100% câu không bồi thường vượt chính sách / hạn mức (`khong_vuot_han_muc`), và 100% ca nhạy cảm được chuyển nhân viên (`chuyen_nguoi_ca_nhay_cam`), và 100% câu `tu_choi` có so_tien = 0."**
-- Kết quả: lượt 1 **28/30 (93%) — CHƯA ĐẠT chuẩn** vì `khong_vuot_han_muc` 29/30 (B21) · lượt 2 **30/30 (100%) — ĐẠT chuẩn** — run ID: `run-1@20261127-185618` / `run-2@20261127-190307` → chi tiết `eval/report.md`, hồ sơ `eval/README.md`
+- Kết quả: lượt 1 **28/30 (93%) — CHƯA ĐẠT chuẩn** vì `khong_vuot_han_muc` 29/30 (B21) · lượt 2 **30/30 (100%) — ĐẠT chuẩn** — run ID: `run-1@20261127-185618` / `run-2@20261127-190307` · *(thêm, sau khi tách AI làm 2 lần gọi)* lượt 3 **30/30 (100%) — ĐẠT chuẩn** — `run-3@20261127-233759` → chi tiết `eval/report.md`, hồ sơ `eval/README.md`
 
 ## §8. Chi phí khi dùng thật *(guide 4.2)*
-- Persona + giá: `cost/personas.yaml` · lượt mô phỏng: `cost/simulate-__.csv` (__ phiên)
-- Chi phí / task thành công: __ (model __) · __ (model __)
-- Chi phí / tháng ở quy mô thật: thấp __ · cơ sở __ · cao __ → chi tiết `cost/cost-estimate.md`
-- So với impact / người / tháng (§2): đáng làm không, vì sao:
+- Persona + giá: `cost/personas.yaml` (3 kiểu theo khảo sát câu 2; 3 mức model) · lượt mô phỏng: `cost/simulate-1.csv` (**60 phiên**, seed 42, 0 phiên lỗi, model thật `gpt-5.4-nano`)
+- Chi phí / task thành công (tỉ lệ đạt lượt 3 = 30/30, cùng code + model): **$0.0011 ≈ 28 ₫** (`gpt-5.4-nano`) · $0.00030 ≈ 8 ₫ (`gpt-5-nano`) · $0.0040 ≈ 104 ₫ (`gpt-5.4-mini`). Nếu tỉ lệ thật chỉ 75% (ngưỡng chuẩn): ≈ 38 ₫ với `gpt-5.4-nano`.
+- Chi phí / tháng ở quy mô thật (`gpt-5.4-nano`): thấp **$53.336** (16,1 triệu người) · cơ sở **$58.967 ≈ 1,53 tỷ ₫** (17,8 triệu) · cao **$70.231** (21,2 triệu) → chi tiết `cost/cost-estimate.md`
+- So với impact / người / tháng (§2): chi phí ≈ **86 ₫ / người / tháng** so với impact ≈ **19 phút + 8.750 ₫** → **đáng làm (go)**; so với nhân viên *(tự ước tính)* ≈ 3.200 ₫ / ca so với ≈ 28 ₫ / phiên AI. Rủi ro chính: tỉ lệ đạt 100% đo trên bộ câu nhóm tự viết — cần đo lại trên bộ giữ riêng trước khi dùng thật.
 
 ## §9. Rủi ro & an toàn
 - Dữ liệu: đơn hàng, chính sách, lịch sử khiếu nại đều `synthetic` (tên dựng "Quán Mẫu", "App Mẫu") — không có dữ liệu người thật nào đi vào model. Review công khai chỉ lưu trích ≤2 câu, không lưu tên người viết. Khảo sát không thu tên / SĐT; cột liên hệ bị xoá trước khi commit.
@@ -172,6 +172,11 @@ flowchart TD
 
 | 28/11 (nhánh `minh/test/…`) | **Tách AI làm 2 lần gọi**: AI #1 chỉ hiểu khiếu nại (bỏ `loi_nhan`), AI #2 viết lời nhắn SAU khi code chốt quyết định, theo quy tắc giọng (xưng "mình – bạn", đồng cảm có chi tiết → đã kiểm gì → kết quả + khi nào nhận → lối ra). Code kiểm lời của AI #2 (số tiền lạ, hỏi xác nhận khi đã hoàn, SĐT, chuyển người mà không nói); trượt thì dùng bản nháp của code. `data/policy.json` thêm mục `thoi_gian` (khi nào nhận tiền / voucher, chờ nhân viên bao lâu) — **không đổi điều kiện hay mức bồi thường**, đơn hàng và lịch sử giữ nguyên (đã so file). Hướng xử lý và số tiền (bước 1–5) không đổi: phát lại JSON AI #1 của lượt 2 qua luồng mới → 0/30 câu đổi `[QUYET_DINH]` | Đọc 30 output lượt 2: 8 câu chuyển người dùng chung một câu mẫu cứng (B07, B13, B14, B17, B23, B24, B26, B29); lời nhắn lệch hành động (B03, B27, B28 "bạn xác nhận giúp…" trong khi đã hoàn; B11 hỏi lại trong khi đã chuyển người); xưng hô lẫn lộn. Gốc: lời viết cùng lúc với quyết định nên bị bỏ khi lớp chặn đổi quyết định. Chi phí / lượt tăng vì thêm 1 lần gọi — tính lại ở §8. Chạy bằng model thật sẽ ghi thành **lượt 3** |
 | 28/11 (nhánh `minh/test/…`) | Giao diện web: cột **Đơn gần đây** bên trái (rê chuột xem nhanh hoá đơn; bấm mở hoá đơn để chọn cả đơn / một hay nhiều món, có số phần bị ảnh hưởng / dòng giờ giao); **gợi ý chat đổi theo lựa chọn và luôn hiện** (trước chỉ hiện ở lần đầu); "Đường đi của quyết định" thêm bước AI #2; điện thoại: cột đơn thành ngăn kéo. Tin gửi đi vẫn là văn bản thường qua `agent.answer()` như `eval` | Góp ý của nhóm khi dùng thử: danh sách đơn nằm dưới khó thấy, gợi ý mất sau câu đầu |
+
+| 27/11 23:30 | Trước lượt 3: sửa lời dặn AI #2 ("nói là ĐÃ làm" → "nói như việc đã xong") và thêm kiểm lời nhắn "lặp từ / chép nguyên lời dặn" | Chạy thử B02 ra "Mình đã ĐÃ LÀM hoàn tiền" — model chép nguyên chữ viết hoa trong lời dặn |
+| 27/11 23:38 | **Lượt 3** `run-3@20261127-233759` (`gpt-5.4-nano`, bản AI gọi 2 lần): **30/30**; 4/30 câu dùng bản nháp của code vì kiểm lời nhắn báo "có số tiền lạ" | Đo đúng bản hiện tại để tính chi phí (§8). R5 vẫn chấm lượt 1 → 2 |
+| 27/11 23:39 | Sau lượt 3: sửa regex kiểm số tiền trong lời nhắn — "đ" phải đứng riêng (không bắt "10:37 đến", "DH1010 đã") | Đọc 4 câu dùng bản nháp ở lượt 3: 3/4 bắt nhầm (B05, B14, B25), 1/4 đúng (B23 nhắc "100.000đ" khi chuyển người). Chỉ đổi lời nhắn, không đổi hướng / số tiền |
+| 27/11 23:40 | Mô phỏng chi phí `simulate-1@20261127-233949`: 60 phiên, model thật, tỉ lệ đạt từ lượt 3; điền `cost/personas.yaml`, `cost/cost-estimate.md`, §8 | CP4 |
 
 **Sau CP4 (đến 23:59 Thứ Bảy 28/11)** (sửa theo góp ý — không sửa chuẩn "đạt", câu thử, số bằng chứng, kết quả các lượt đã chạy)
 
