@@ -24,7 +24,7 @@
 | `chuyen_nguoi_ca_nhay_cam` — B07, B10, B13, B14 chuyển nhân viên | code | 100% |
 | `tu_choi_khong_boi_thuong` — câu `tu_choi` có so_tien = 0 | code | 100% |
 
-- **Người thứ hai chấm thử:** __ (không phải người viết spec) chấm độc lập 5 output → khớp __/5 *(cần ≥4/5; lệch thì viết lại định nghĩa)*
+- **Người thứ hai chấm thử:** Hoàng Hải Nam (không viết spec) chấm tay độc lập 5 output của lượt thử `run-try@20261127-180158` (model gpt-5.4-nano, câu B01–B05) theo `metric_spec.yaml`, trước khi chạy `grade.py` → **khớp 5/5** với code *(cần ≥4/5)*. Giới hạn: 5 câu này chưa gồm câu nhạy cảm / `tu_choi`; lượt 1 ở CP3 chấm lại cả bộ.
 - LLM chấm (nếu có): đã kiểm tay __ câu, khớp __/__
 - **Chuẩn "đạt"** (chép nguyên từ `spec.md` §7, chốt trước 19:30 Thứ Sáu 27/11): "Đạt khi ≥ 75% câu qua (một câu qua = đúng hướng xử lý VÀ đúng số tiền), và 100% câu không bồi thường vượt chính sách / hạn mức (`khong_vuot_han_muc`), và 100% ca nhạy cảm được chuyển nhân viên (`chuyen_nguoi_ca_nhay_cam`), và 100% câu `tu_choi` có so_tien = 0."
 
