@@ -11,9 +11,10 @@
 
 | STT | Họ và tên | Mã học viên | Vai trò | Phần việc chính |
 |---|---|---|---|---|
-| 1 | ____ | ____ | Đội trưởng | ____ |
-| 2 | ____ | ____ | Thành viên | ____ |
-| 3 | ____ | ____ | Thành viên | ____ |
+| 1 | Vũ Nhật Minh | 2A202603711 | Đội trưởng | Điều phối, nộp checkpoint · khảo sát + tổng hợp bằng chứng + impact (evidence/survey, evidence/summary.md, spec §1–§2) · mô phỏng chi phí (cost/) · slide |
+| 2 | Hoàng Hải Nam | 2A202603694 | Thành viên | Phỏng vấn người dùng + chủ quán (evidence/interviews) · nối model thật + chặn rủi ro (codebase/ai.py, agent.py) · người dùng thử (validation/) |
+| 3 | Phạm Thanh Tùng | 2A202603695 | Thành viên | Đếm review Google Play (evidence/data-mining.md) · bộ câu thử + metric + báo cáo đánh giá (eval/) |
+| 4 | Nguyễn Tuấn Bách | 2A202603596 | Thành viên | Dựng data giả có seed (data/, DATA_CARD.md) · công cụ + luồng bản chạy thử (codebase/tools.py, agent.py) · video demo dự phòng |
 
 **Quy tắc điền**
 - **Lớp:** `L3A` hoặc `L3B`. **Track:** một chữ `A` (EdTech), `B` (Y tế), `C` (Du lịch), `D` (Thương mại điện tử), `E` (Tài chính) hoặc `F` (Làn khác). **Link repo:** link GitHub công khai của nhóm.

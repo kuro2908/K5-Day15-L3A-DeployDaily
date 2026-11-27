@@ -94,7 +94,15 @@ Data BTC cấp đã dùng (nếu có — không commit nguyên file): không (tr
 - Ai có thể bị hại nếu AI sai, và nhóm chặn thế nào:
 
 ## §10. Phân công & changelog
-- Phân công có tên (theo chặng, chia cặp — guide "Cách chia việc"): __
+- Phân công có tên (theo chặng, chia cặp — guide "Cách chia việc"):
+
+  | Chặng | Cả nhóm | Vũ Nhật Minh (đội trưởng) | Hoàng Hải Nam | Phạm Thanh Tùng | Nguyễn Tuấn Bách |
+  |---|---|---|---|---|---|
+  | 1–2 · Người dùng + Canvas → CP1 17:00 T6 | Chốt track, giả thuyết, canvas | Gửi khảo sát, nộp CP1 | Hẹn 3 người dùng + 1 chủ quán | Đếm review (cách đếm đã ghi trước) | Chụp luồng khiếu nại trên app (§0), che thông tin |
+  | 3 · Pain → khung → CP2 19:30 T6 | Mỗi người ≥1 cuộc hỏi → 20' tổng hợp → chốt lát cắt + sơ đồ | Cặp Y: tổng hợp khảo sát, `metric_spec.yaml`, chuẩn "đạt" §7 | Cặp X: phỏng vấn, khung `agent.py` với AI giả | Cặp Y: ≥10 câu thử, `DATA_CARD.md` | Cặp X: data giả có seed, `tools.py` |
+  | 4 · Chạy thật → CP3 10:00 T7 | Chạy lượt 1 cùng nhau | `evidence/summary.md`, bảng impact §2 | Nối model thật, chặn rủi ro, quay video 30" | Mở rộng 20–30 câu thử, chấm lượt 1 | Hoàn thiện luồng, README lệnh chạy |
+  | 5 · Đo & tính tiền | Đọc câu trượt, chọn 1 cải tiến | Cặp Y: `cost/personas.yaml`, `simulate`, `cost-estimate.md` | Cặp X: cải tiến → lượt 2 · người dùng thử | Cặp Y: `eval/report.md`, `eval/README.md` | Cặp X: cải tiến → lượt 2 |
+  | 6 · Kết luận → CP4 14:30 T7 | Go / iterate / stop, tập demo | Slide | Video demo dự phòng | Slide | Video demo dự phòng |
 - Dùng AI vào việc gì (2–3 dòng; chi tiết `docs/ai-usage.md`):
 - Nhật ký thay đổi — **mọi thay đổi sau CP2 19:30 Thứ Sáu 27/11 phải có dòng ở đây**:
 
