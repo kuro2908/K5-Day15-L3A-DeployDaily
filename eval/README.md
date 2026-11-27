@@ -36,7 +36,7 @@
 
 | Lượt | Run ID | Model | Cấu hình (prompt / công cụ / thay đổi) | Đạt / tổng | % | Đạt chuẩn? |
 |---|---|---|---|---|---|---|
-| 1 | | | | __/__ | | |
+| 1 | `run-1@20261127-185618` | gpt-5.4-nano | prompt `SYSTEM` bản CP2 · workflow 1 lần gọi model + lớp chặn · 30 câu | 28/30 | 93% | **Không** — ≥75% đạt, nhưng `khong_vuot_han_muc` 29/30 (B21 hoàn 36.000đ khi phải hỏi lại) |
 | 2 | | | | __/__ | | |
 
 Lượt chạy lại vì lỗi kỹ thuật, lượt sau CP4: ghi thêm dòng, không sửa dòng cũ.
