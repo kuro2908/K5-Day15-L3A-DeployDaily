@@ -13,6 +13,6 @@ README của nhóm có mục "Dùng AI vào việc gì" (2–3 dòng, bắt bu�
 | Viết câu thử (benchmark) | Claude Code | Viết 16 câu đầu từ kịch bản §5 và 6 review thật | Mỗi câu thử có `source`; người thứ hai kiểm `expected` theo `data/policy.json` | Phạm Thanh Tùng |
 | Sinh data `synthetic` (nếu có) | Claude Code | Viết `data/generate.py` | Seed 42 · kiểm tay __/16 đơn kịch bản | Nguyễn Tuấn Bách |
 | Chấm cột `pass` bằng LLM (nếu có) | | | Kiểm tra thủ công __ câu thử, khớp __/__ | |
-| Slide, văn bản | | | | |
+| Slide, văn bản | Claude Code | Dựng slide HTML 8 trang + xuất `demo-slides.pdf`, chạy lượt 3 và mô phỏng chi phí, viết `cost/cost-estimate.md` | Mọi số trên slide trỏ về file trong repo (chân mỗi trang); nhóm duyệt lời nói từng trang | Vũ Nhật Minh, Phạm Thanh Tùng |
 
 **Không dùng AI để:** tạo người được phỏng vấn, trích dẫn, câu trả lời khảo sát; sửa kết quả các lượt đã chạy (`eval/run-*.csv`, `cost/simulate-*.csv`, `traces/`).
