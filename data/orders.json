@@ -1,0 +1,994 @@
+{
+ "_synthetic": true,
+ "_seed": 42,
+ "_now": "2026-11-27T19:00",
+ "orders": {
+  "DH1001": {
+   "order_id": "DH1001",
+   "user_id": "U001",
+   "quan": "Quán Mẫu Trà Sữa",
+   "mon": [
+    {
+     "ten_mon": "Trà sữa trân châu",
+     "don_gia": 35000,
+     "so_luong": 2
+    },
+    {
+     "ten_mon": "Bánh flan",
+     "don_gia": 15000,
+     "so_luong": 1
+    }
+   ],
+   "phi_ship": 15000,
+   "tong_tien": 100000,
+   "gio_hen": "2026-11-27T12:00",
+   "gio_giao": "2026-11-27T11:55",
+   "trang_thai": "da_giao"
+  },
+  "DH1002": {
+   "order_id": "DH1002",
+   "user_id": "U002",
+   "quan": "Quán Mẫu Cơm Tấm",
+   "mon": [
+    {
+     "ten_mon": "Cơm sườn",
+     "don_gia": 45000,
+     "so_luong": 1
+    },
+    {
+     "ten_mon": "Canh chua",
+     "don_gia": 20000,
+     "so_luong": 1
+    }
+   ],
+   "phi_ship": 15000,
+   "tong_tien": 80000,
+   "gio_hen": "2026-11-27T12:00",
+   "gio_giao": "2026-11-27T12:10",
+   "trang_thai": "da_giao"
+  },
+  "DH1003": {
+   "order_id": "DH1003",
+   "user_id": "U003",
+   "quan": "Quán Mẫu Lẩu Nướng",
+   "mon": [
+    {
+     "ten_mon": "Combo lẩu thái 4 người",
+     "don_gia": 320000,
+     "so_luong": 1
+    },
+    {
+     "ten_mon": "Bò nướng",
+     "don_gia": 90000,
+     "so_luong": 1
+    },
+    {
+     "ten_mon": "Khoai tây chiên",
+     "don_gia": 40000,
+     "so_luong": 1
+    },
+    {
+     "ten_mon": "Nước ngọt",
+     "don_gia": 15000,
+     "so_luong": 2
+    }
+   ],
+   "phi_ship": 20000,
+   "tong_tien": 500000,
+   "gio_hen": "2026-11-27T18:00",
+   "gio_giao": "2026-11-27T18:05",
+   "trang_thai": "da_giao"
+  },
+  "DH1004": {
+   "order_id": "DH1004",
+   "user_id": "U004",
+   "quan": "Quán Mẫu Phở",
+   "mon": [
+    {
+     "ten_mon": "Phở bò tái",
+     "don_gia": 55000,
+     "so_luong": 1
+    }
+   ],
+   "phi_ship": 15000,
+   "tong_tien": 70000,
+   "gio_hen": "2026-11-27T12:00",
+   "gio_giao": "2026-11-27T12:29",
+   "trang_thai": "da_giao"
+  },
+  "DH1005": {
+   "order_id": "DH1005",
+   "user_id": "U005",
+   "quan": "Quán Mẫu Cơm Gà",
+   "mon": [
+    {
+     "ten_mon": "Cơm gà xối mỡ",
+     "don_gia": 50000,
+     "so_luong": 1
+    },
+    {
+     "ten_mon": "Trà đá",
+     "don_gia": 5000,
+     "so_luong": 1
+    }
+   ],
+   "phi_ship": 15000,
+   "tong_tien": 70000,
+   "gio_hen": "2026-11-27T11:07",
+   "gio_giao": "2026-11-27T12:07",
+   "trang_thai": "da_giao"
+  },
+  "DH1006": {
+   "order_id": "DH1006",
+   "user_id": "U006",
+   "quan": "Quán Mẫu Bún Bò",
+   "mon": [
+    {
+     "ten_mon": "Bún bò Huế",
+     "don_gia": 50000,
+     "so_luong": 1
+    },
+    {
+     "ten_mon": "Chả cua thêm",
+     "don_gia": 15000,
+     "so_luong": 1
+    }
+   ],
+   "phi_ship": 15000,
+   "tong_tien": 80000,
+   "gio_hen": "2026-11-27T12:00",
+   "gio_giao": "2026-11-27T12:45",
+   "trang_thai": "da_giao"
+  },
+  "DH1007": {
+   "order_id": "DH1007",
+   "user_id": "U007",
+   "quan": "Quán Mẫu Trà Sữa",
+   "mon": [
+    {
+     "ten_mon": "Trà đào cam sả",
+     "don_gia": 39000,
+     "so_luong": 1
+    },
+    {
+     "ten_mon": "Trà sữa matcha",
+     "don_gia": 42000,
+     "so_luong": 1
+    }
+   ],
+   "phi_ship": 15000,
+   "tong_tien": 96000,
+   "gio_hen": "2026-11-27T15:00",
+   "gio_giao": "2026-11-27T14:58",
+   "trang_thai": "da_giao"
+  },
+  "DH1008": {
+   "order_id": "DH1008",
+   "user_id": "U008",
+   "quan": "Quán Mẫu Cơm Văn Phòng",
+   "mon": [
+    {
+     "ten_mon": "Cơm gà kho",
+     "don_gia": 45000,
+     "so_luong": 1
+    },
+    {
+     "ten_mon": "Rau luộc",
+     "don_gia": 10000,
+     "so_luong": 1
+    }
+   ],
+   "phi_ship": 15000,
+   "tong_tien": 70000,
+   "gio_hen": "2026-11-27T12:00",
+   "gio_giao": "2026-11-27T11:50",
+   "trang_thai": "da_giao"
+  },
+  "DH1009": {
+   "order_id": "DH1009",
+   "user_id": "U009",
+   "quan": "Quán Mẫu Pizza",
+   "mon": [
+    {
+     "ten_mon": "Pizza hải sản cỡ lớn",
+     "don_gia": 189000,
+     "so_luong": 1
+    },
+    {
+     "ten_mon": "Gà viên",
+     "don_gia": 59000,
+     "so_luong": 1
+    }
+   ],
+   "phi_ship": 15000,
+   "tong_tien": 263000,
+   "gio_hen": "2026-11-27T19:00",
+   "gio_giao": "2026-11-27T18:55",
+   "trang_thai": "da_giao"
+  },
+  "DH1010": {
+   "order_id": "DH1010",
+   "user_id": "U010",
+   "quan": "Quán Mẫu Bánh Mì",
+   "mon": [
+    {
+     "ten_mon": "Bánh mì thịt",
+     "don_gia": 25000,
+     "so_luong": 1
+    }
+   ],
+   "phi_ship": 15000,
+   "tong_tien": 40000,
+   "gio_hen": "2026-11-27T07:30",
+   "gio_giao": "",
+   "trang_thai": "da_huy"
+  },
+  "DH1011": {
+   "order_id": "DH1011",
+   "user_id": "U011",
+   "quan": "Quán Mẫu Bún Đậu",
+   "mon": [
+    {
+     "ten_mon": "Bún đậu mắm tôm đầy đủ",
+     "don_gia": 55000,
+     "so_luong": 1
+    },
+    {
+     "ten_mon": "Nem chua rán",
+     "don_gia": 30000,
+     "so_luong": 1
+    }
+   ],
+   "phi_ship": 15000,
+   "tong_tien": 100000,
+   "gio_hen": "2026-11-27T12:00",
+   "gio_giao": "2026-11-27T12:05",
+   "trang_thai": "da_giao"
+  },
+  "DH1012": {
+   "order_id": "DH1012",
+   "user_id": "U012",
+   "quan": "Quán Mẫu Mì Cay",
+   "mon": [
+    {
+     "ten_mon": "Mì cay hải sản",
+     "don_gia": 59000,
+     "so_luong": 1
+    }
+   ],
+   "phi_ship": 25000,
+   "tong_tien": 84000,
+   "gio_hen": "2026-11-27T18:00",
+   "gio_giao": "2026-11-27T19:05",
+   "trang_thai": "da_giao"
+  },
+  "DH1013": {
+   "order_id": "DH1013",
+   "user_id": "U013",
+   "quan": "Quán Mẫu Cơm Tấm",
+   "mon": [
+    {
+     "ten_mon": "Cơm sườn bì chả",
+     "don_gia": 55000,
+     "so_luong": 1
+    }
+   ],
+   "phi_ship": 15000,
+   "tong_tien": 70000,
+   "gio_hen": "2026-11-25T12:00",
+   "gio_giao": "2026-11-25T12:00",
+   "trang_thai": "da_giao"
+  },
+  "DH1014": {
+   "order_id": "DH1014",
+   "user_id": "U014",
+   "quan": "Quán Mẫu Gà Rán",
+   "mon": [
+    {
+     "ten_mon": "Combo gà rán 3 miếng",
+     "don_gia": 129000,
+     "so_luong": 1
+    },
+    {
+     "ten_mon": "Pepsi",
+     "don_gia": 15000,
+     "so_luong": 1
+    }
+   ],
+   "phi_ship": 15000,
+   "tong_tien": 159000,
+   "gio_hen": "2026-11-27T18:00",
+   "gio_giao": "2026-11-27T17:58",
+   "trang_thai": "da_giao"
+  },
+  "DH1015": {
+   "order_id": "DH1015",
+   "user_id": "U015",
+   "quan": "Quán Mẫu Trà Sữa",
+   "mon": [
+    {
+     "ten_mon": "Trà sữa trân châu",
+     "don_gia": 35000,
+     "so_luong": 3
+    }
+   ],
+   "phi_ship": 15000,
+   "tong_tien": 120000,
+   "gio_hen": "2026-11-27T15:00",
+   "gio_giao": "2026-11-27T15:31",
+   "trang_thai": "da_giao"
+  },
+  "DH1016": {
+   "order_id": "DH1016",
+   "user_id": "U016",
+   "quan": "Quán Mẫu Bún Chả",
+   "mon": [
+    {
+     "ten_mon": "Bún chả Hà Nội",
+     "don_gia": 50000,
+     "so_luong": 1
+    },
+    {
+     "ten_mon": "Nem rán",
+     "don_gia": 12000,
+     "so_luong": 4
+    }
+   ],
+   "phi_ship": 15000,
+   "tong_tien": 113000,
+   "gio_hen": "2026-11-27T12:00",
+   "gio_giao": "2026-11-27T11:58",
+   "trang_thai": "da_giao"
+  },
+  "DH2001": {
+   "order_id": "DH2001",
+   "user_id": "U100",
+   "quan": "Quán Mẫu 1",
+   "mon": [
+    {
+     "ten_mon": "Phở bò",
+     "don_gia": 55000,
+     "so_luong": 1
+    },
+    {
+     "ten_mon": "Cơm sườn",
+     "don_gia": 45000,
+     "so_luong": 1
+    },
+    {
+     "ten_mon": "Bánh mì thịt",
+     "don_gia": 25000,
+     "so_luong": 1
+    }
+   ],
+   "phi_ship": 15000,
+   "tong_tien": 140000,
+   "gio_hen": "2026-11-27T11:00",
+   "gio_giao": "2026-11-27T12:15",
+   "trang_thai": "da_giao"
+  },
+  "DH2002": {
+   "order_id": "DH2002",
+   "user_id": "U101",
+   "quan": "Quán Mẫu 2",
+   "mon": [
+    {
+     "ten_mon": "Bún chả",
+     "don_gia": 50000,
+     "so_luong": 2
+    },
+    {
+     "ten_mon": "Mì cay",
+     "don_gia": 59000,
+     "so_luong": 2
+    },
+    {
+     "ten_mon": "Trà sữa trân châu",
+     "don_gia": 35000,
+     "so_luong": 1
+    }
+   ],
+   "phi_ship": 15000,
+   "tong_tien": 268000,
+   "gio_hen": "2026-11-27T12:00",
+   "gio_giao": "2026-11-27T12:31",
+   "trang_thai": "da_giao"
+  },
+  "DH2003": {
+   "order_id": "DH2003",
+   "user_id": "U102",
+   "quan": "Quán Mẫu 3",
+   "mon": [
+    {
+     "ten_mon": "Phở bò",
+     "don_gia": 55000,
+     "so_luong": 2
+    },
+    {
+     "ten_mon": "Trà đào",
+     "don_gia": 39000,
+     "so_luong": 1
+    }
+   ],
+   "phi_ship": 15000,
+   "tong_tien": 164000,
+   "gio_hen": "2026-11-27T15:00",
+   "gio_giao": "2026-11-27T15:25",
+   "trang_thai": "da_giao"
+  },
+  "DH2004": {
+   "order_id": "DH2004",
+   "user_id": "U103",
+   "quan": "Quán Mẫu 4",
+   "mon": [
+    {
+     "ten_mon": "Bún chả",
+     "don_gia": 50000,
+     "so_luong": 2
+    },
+    {
+     "ten_mon": "Phở bò",
+     "don_gia": 55000,
+     "so_luong": 1
+    }
+   ],
+   "phi_ship": 15000,
+   "tong_tien": 170000,
+   "gio_hen": "2026-11-27T18:00",
+   "gio_giao": "2026-11-27T18:15",
+   "trang_thai": "da_giao"
+  },
+  "DH2005": {
+   "order_id": "DH2005",
+   "user_id": "U104",
+   "quan": "Quán Mẫu 5",
+   "mon": [
+    {
+     "ten_mon": "Cơm sườn",
+     "don_gia": 45000,
+     "so_luong": 1
+    }
+   ],
+   "phi_ship": 15000,
+   "tong_tien": 60000,
+   "gio_hen": "2026-11-27T14:00",
+   "gio_giao": "2026-11-27T13:55",
+   "trang_thai": "da_giao"
+  },
+  "DH2006": {
+   "order_id": "DH2006",
+   "user_id": "U105",
+   "quan": "Quán Mẫu 6",
+   "mon": [
+    {
+     "ten_mon": "Mì cay",
+     "don_gia": 59000,
+     "so_luong": 2
+    }
+   ],
+   "phi_ship": 15000,
+   "tong_tien": 133000,
+   "gio_hen": "2026-11-27T17:00",
+   "gio_giao": "2026-11-27T18:15",
+   "trang_thai": "da_giao"
+  },
+  "DH2007": {
+   "order_id": "DH2007",
+   "user_id": "U106",
+   "quan": "Quán Mẫu 7",
+   "mon": [
+    {
+     "ten_mon": "Bánh mì thịt",
+     "don_gia": 25000,
+     "so_luong": 1
+    }
+   ],
+   "phi_ship": 15000,
+   "tong_tien": 40000,
+   "gio_hen": "2026-11-27T19:00",
+   "gio_giao": "2026-11-27T20:15",
+   "trang_thai": "da_giao"
+  },
+  "DH2008": {
+   "order_id": "DH2008",
+   "user_id": "U107",
+   "quan": "Quán Mẫu 1",
+   "mon": [
+    {
+     "ten_mon": "Trà sữa trân châu",
+     "don_gia": 35000,
+     "so_luong": 2
+    },
+    {
+     "ten_mon": "Bún bò Huế",
+     "don_gia": 50000,
+     "so_luong": 2
+    },
+    {
+     "ten_mon": "Cơm gà",
+     "don_gia": 50000,
+     "so_luong": 1
+    }
+   ],
+   "phi_ship": 15000,
+   "tong_tien": 235000,
+   "gio_hen": "2026-11-27T20:00",
+   "gio_giao": "2026-11-27T20:25",
+   "trang_thai": "da_giao"
+  },
+  "DH2009": {
+   "order_id": "DH2009",
+   "user_id": "U108",
+   "quan": "Quán Mẫu 2",
+   "mon": [
+    {
+     "ten_mon": "Cơm sườn",
+     "don_gia": 45000,
+     "so_luong": 2
+    }
+   ],
+   "phi_ship": 15000,
+   "tong_tien": 105000,
+   "gio_hen": "2026-11-27T16:00",
+   "gio_giao": "2026-11-27T16:15",
+   "trang_thai": "da_giao"
+  },
+  "DH2010": {
+   "order_id": "DH2010",
+   "user_id": "U109",
+   "quan": "Quán Mẫu 3",
+   "mon": [
+    {
+     "ten_mon": "Trà đào",
+     "don_gia": 39000,
+     "so_luong": 2
+    }
+   ],
+   "phi_ship": 15000,
+   "tong_tien": 93000,
+   "gio_hen": "2026-11-27T13:00",
+   "gio_giao": "2026-11-27T14:15",
+   "trang_thai": "da_giao"
+  },
+  "DH2011": {
+   "order_id": "DH2011",
+   "user_id": "U110",
+   "quan": "Quán Mẫu 4",
+   "mon": [
+    {
+     "ten_mon": "Bánh mì thịt",
+     "don_gia": 25000,
+     "so_luong": 2
+    },
+    {
+     "ten_mon": "Mì cay",
+     "don_gia": 59000,
+     "so_luong": 1
+    },
+    {
+     "ten_mon": "Bún chả",
+     "don_gia": 50000,
+     "so_luong": 1
+    }
+   ],
+   "phi_ship": 15000,
+   "tong_tien": 174000,
+   "gio_hen": "2026-11-27T18:00",
+   "gio_giao": "2026-11-27T18:40",
+   "trang_thai": "da_giao"
+  },
+  "DH2012": {
+   "order_id": "DH2012",
+   "user_id": "U111",
+   "quan": "Quán Mẫu 5",
+   "mon": [
+    {
+     "ten_mon": "Phở bò",
+     "don_gia": 55000,
+     "so_luong": 1
+    }
+   ],
+   "phi_ship": 15000,
+   "tong_tien": 70000,
+   "gio_hen": "2026-11-27T20:00",
+   "gio_giao": "2026-11-27T20:00",
+   "trang_thai": "da_giao"
+  },
+  "DH2013": {
+   "order_id": "DH2013",
+   "user_id": "U112",
+   "quan": "Quán Mẫu 6",
+   "mon": [
+    {
+     "ten_mon": "Bánh mì thịt",
+     "don_gia": 25000,
+     "so_luong": 1
+    },
+    {
+     "ten_mon": "Bún chả",
+     "don_gia": 50000,
+     "so_luong": 2
+    },
+    {
+     "ten_mon": "Cơm sườn",
+     "don_gia": 45000,
+     "so_luong": 2
+    }
+   ],
+   "phi_ship": 15000,
+   "tong_tien": 230000,
+   "gio_hen": "2026-11-27T11:00",
+   "gio_giao": "2026-11-27T11:15",
+   "trang_thai": "da_giao"
+  },
+  "DH2014": {
+   "order_id": "DH2014",
+   "user_id": "U113",
+   "quan": "Quán Mẫu 7",
+   "mon": [
+    {
+     "ten_mon": "Bún bò Huế",
+     "don_gia": 50000,
+     "so_luong": 2
+    },
+    {
+     "ten_mon": "Bún chả",
+     "don_gia": 50000,
+     "so_luong": 1
+    },
+    {
+     "ten_mon": "Phở bò",
+     "don_gia": 55000,
+     "so_luong": 1
+    }
+   ],
+   "phi_ship": 15000,
+   "tong_tien": 220000,
+   "gio_hen": "2026-11-27T15:00",
+   "gio_giao": "2026-11-27T15:00",
+   "trang_thai": "da_giao"
+  },
+  "DH2015": {
+   "order_id": "DH2015",
+   "user_id": "U114",
+   "quan": "Quán Mẫu 1",
+   "mon": [
+    {
+     "ten_mon": "Phở bò",
+     "don_gia": 55000,
+     "so_luong": 2
+    }
+   ],
+   "phi_ship": 15000,
+   "tong_tien": 125000,
+   "gio_hen": "2026-11-27T11:00",
+   "gio_giao": "2026-11-27T11:59",
+   "trang_thai": "da_giao"
+  },
+  "DH2016": {
+   "order_id": "DH2016",
+   "user_id": "U115",
+   "quan": "Quán Mẫu 2",
+   "mon": [
+    {
+     "ten_mon": "Cơm gà",
+     "don_gia": 50000,
+     "so_luong": 1
+    }
+   ],
+   "phi_ship": 15000,
+   "tong_tien": 65000,
+   "gio_hen": "2026-11-27T14:00",
+   "gio_giao": "2026-11-27T14:59",
+   "trang_thai": "da_giao"
+  },
+  "DH2017": {
+   "order_id": "DH2017",
+   "user_id": "U116",
+   "quan": "Quán Mẫu 3",
+   "mon": [
+    {
+     "ten_mon": "Mì cay",
+     "don_gia": 59000,
+     "so_luong": 2
+    },
+    {
+     "ten_mon": "Gà rán 2 miếng",
+     "don_gia": 69000,
+     "so_luong": 2
+    }
+   ],
+   "phi_ship": 15000,
+   "tong_tien": 271000,
+   "gio_hen": "2026-11-27T11:00",
+   "gio_giao": "2026-11-27T11:05",
+   "trang_thai": "da_giao"
+  },
+  "DH2018": {
+   "order_id": "DH2018",
+   "user_id": "U117",
+   "quan": "Quán Mẫu 4",
+   "mon": [
+    {
+     "ten_mon": "Gà rán 2 miếng",
+     "don_gia": 69000,
+     "so_luong": 1
+    }
+   ],
+   "phi_ship": 15000,
+   "tong_tien": 84000,
+   "gio_hen": "2026-11-27T19:00",
+   "gio_giao": "2026-11-27T19:59",
+   "trang_thai": "da_giao"
+  },
+  "DH2019": {
+   "order_id": "DH2019",
+   "user_id": "U118",
+   "quan": "Quán Mẫu 5",
+   "mon": [
+    {
+     "ten_mon": "Trà sữa trân châu",
+     "don_gia": 35000,
+     "so_luong": 1
+    },
+    {
+     "ten_mon": "Cơm sườn",
+     "don_gia": 45000,
+     "so_luong": 1
+    },
+    {
+     "ten_mon": "Phở bò",
+     "don_gia": 55000,
+     "so_luong": 1
+    }
+   ],
+   "phi_ship": 15000,
+   "tong_tien": 150000,
+   "gio_hen": "2026-11-27T10:00",
+   "gio_giao": "2026-11-27T10:25",
+   "trang_thai": "da_giao"
+  },
+  "DH2020": {
+   "order_id": "DH2020",
+   "user_id": "U119",
+   "quan": "Quán Mẫu 6",
+   "mon": [
+    {
+     "ten_mon": "Trà sữa trân châu",
+     "don_gia": 35000,
+     "so_luong": 1
+    },
+    {
+     "ten_mon": "Bánh mì thịt",
+     "don_gia": 25000,
+     "so_luong": 1
+    },
+    {
+     "ten_mon": "Cơm gà",
+     "don_gia": 50000,
+     "so_luong": 2
+    }
+   ],
+   "phi_ship": 15000,
+   "tong_tien": 175000,
+   "gio_hen": "2026-11-27T13:00",
+   "gio_giao": "2026-11-27T13:40",
+   "trang_thai": "da_giao"
+  },
+  "DH2021": {
+   "order_id": "DH2021",
+   "user_id": "U120",
+   "quan": "Quán Mẫu 7",
+   "mon": [
+    {
+     "ten_mon": "Mì cay",
+     "don_gia": 59000,
+     "so_luong": 1
+    },
+    {
+     "ten_mon": "Cơm gà",
+     "don_gia": 50000,
+     "so_luong": 1
+    }
+   ],
+   "phi_ship": 15000,
+   "tong_tien": 124000,
+   "gio_hen": "2026-11-27T10:00",
+   "gio_giao": "2026-11-27T10:31",
+   "trang_thai": "da_giao"
+  },
+  "DH2022": {
+   "order_id": "DH2022",
+   "user_id": "U121",
+   "quan": "Quán Mẫu 1",
+   "mon": [
+    {
+     "ten_mon": "Trà sữa trân châu",
+     "don_gia": 35000,
+     "so_luong": 2
+    }
+   ],
+   "phi_ship": 15000,
+   "tong_tien": 85000,
+   "gio_hen": "2026-11-27T12:00",
+   "gio_giao": "2026-11-27T12:31",
+   "trang_thai": "da_giao"
+  },
+  "DH2023": {
+   "order_id": "DH2023",
+   "user_id": "U122",
+   "quan": "Quán Mẫu 2",
+   "mon": [
+    {
+     "ten_mon": "Cơm gà",
+     "don_gia": 50000,
+     "so_luong": 1
+    },
+    {
+     "ten_mon": "Trà sữa trân châu",
+     "don_gia": 35000,
+     "so_luong": 2
+    }
+   ],
+   "phi_ship": 15000,
+   "tong_tien": 135000,
+   "gio_hen": "2026-11-27T18:00",
+   "gio_giao": "2026-11-27T17:55",
+   "trang_thai": "da_giao"
+  },
+  "DH2024": {
+   "order_id": "DH2024",
+   "user_id": "U123",
+   "quan": "Quán Mẫu 3",
+   "mon": [
+    {
+     "ten_mon": "Bún chả",
+     "don_gia": 50000,
+     "so_luong": 1
+    },
+    {
+     "ten_mon": "Cơm sườn",
+     "don_gia": 45000,
+     "so_luong": 1
+    },
+    {
+     "ten_mon": "Phở bò",
+     "don_gia": 55000,
+     "so_luong": 2
+    }
+   ],
+   "phi_ship": 15000,
+   "tong_tien": 220000,
+   "gio_hen": "2026-11-27T17:00",
+   "gio_giao": "2026-11-27T17:40",
+   "trang_thai": "da_giao"
+  },
+  "DH2025": {
+   "order_id": "DH2025",
+   "user_id": "U124",
+   "quan": "Quán Mẫu 4",
+   "mon": [
+    {
+     "ten_mon": "Cơm sườn",
+     "don_gia": 45000,
+     "so_luong": 2
+    },
+    {
+     "ten_mon": "Bún bò Huế",
+     "don_gia": 50000,
+     "so_luong": 1
+    }
+   ],
+   "phi_ship": 15000,
+   "tong_tien": 155000,
+   "gio_hen": "2026-11-27T16:00",
+   "gio_giao": "2026-11-27T16:15",
+   "trang_thai": "da_giao"
+  },
+  "DH2026": {
+   "order_id": "DH2026",
+   "user_id": "U125",
+   "quan": "Quán Mẫu 5",
+   "mon": [
+    {
+     "ten_mon": "Bánh mì thịt",
+     "don_gia": 25000,
+     "so_luong": 1
+    }
+   ],
+   "phi_ship": 15000,
+   "tong_tien": 40000,
+   "gio_hen": "2026-11-27T10:00",
+   "gio_giao": "2026-11-27T11:01",
+   "trang_thai": "da_giao"
+  },
+  "DH2027": {
+   "order_id": "DH2027",
+   "user_id": "U126",
+   "quan": "Quán Mẫu 6",
+   "mon": [
+    {
+     "ten_mon": "Phở bò",
+     "don_gia": 55000,
+     "so_luong": 1
+    },
+    {
+     "ten_mon": "Trà sữa trân châu",
+     "don_gia": 35000,
+     "so_luong": 1
+    },
+    {
+     "ten_mon": "Mì cay",
+     "don_gia": 59000,
+     "so_luong": 1
+    }
+   ],
+   "phi_ship": 15000,
+   "tong_tien": 164000,
+   "gio_hen": "2026-11-27T19:00",
+   "gio_giao": "2026-11-27T18:55",
+   "trang_thai": "da_giao"
+  },
+  "DH2028": {
+   "order_id": "DH2028",
+   "user_id": "U127",
+   "quan": "Quán Mẫu 7",
+   "mon": [
+    {
+     "ten_mon": "Gà rán 2 miếng",
+     "don_gia": 69000,
+     "so_luong": 1
+    }
+   ],
+   "phi_ship": 15000,
+   "tong_tien": 84000,
+   "gio_hen": "2026-11-27T14:00",
+   "gio_giao": "2026-11-27T14:31",
+   "trang_thai": "da_giao"
+  },
+  "DH2029": {
+   "order_id": "DH2029",
+   "user_id": "U128",
+   "quan": "Quán Mẫu 1",
+   "mon": [
+    {
+     "ten_mon": "Bánh mì thịt",
+     "don_gia": 25000,
+     "so_luong": 1
+    },
+    {
+     "ten_mon": "Cơm gà",
+     "don_gia": 50000,
+     "so_luong": 1
+    },
+    {
+     "ten_mon": "Gà rán 2 miếng",
+     "don_gia": 69000,
+     "so_luong": 2
+    }
+   ],
+   "phi_ship": 15000,
+   "tong_tien": 228000,
+   "gio_hen": "2026-11-27T19:00",
+   "gio_giao": "2026-11-27T20:01",
+   "trang_thai": "da_giao"
+  },
+  "DH2030": {
+   "order_id": "DH2030",
+   "user_id": "U129",
+   "quan": "Quán Mẫu 2",
+   "mon": [
+    {
+     "ten_mon": "Bún chả",
+     "don_gia": 50000,
+     "so_luong": 1
+    }
+   ],
+   "phi_ship": 15000,
+   "tong_tien": 65000,
+   "gio_hen": "2026-11-27T18:00",
+   "gio_giao": "2026-11-27T18:15",
+   "trang_thai": "da_giao"
+  }
+ }
+}

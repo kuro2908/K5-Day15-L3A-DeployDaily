@@ -1,0 +1,43 @@
+{
+ "_ghi_chu": "Chính sách DỰNG của 'App Mẫu' cho bản chạy thử — không phải chính sách của hãng thật.",
+ "bao_trong_gio": 24,
+ "tu_dong_toi_da_moi_don": 100000,
+ "lich_su_toi_da_30_ngay": 2,
+ "thieu_mon": {
+  "dieu_kien": "Món báo thiếu có trong đơn và số lượng báo thiếu không quá số lượng đã đặt.",
+  "boi_thuong": "Hoàn tiền đúng giá các món thiếu (đơn giá × số lượng thiếu).",
+  "hinh_thuc": "hoan_tien"
+ },
+ "sai_mon": {
+  "dieu_kien": "Món đã đặt có trong đơn và khách nhận món khác.",
+  "boi_thuong": "Hoàn tiền đúng giá món đã đặt bị giao sai (đơn giá × số lượng).",
+  "hinh_thuc": "hoan_tien"
+ },
+ "giao_tre": {
+  "dieu_kien": "Giờ giao thực tế trễ QUÁ 30 phút so với giờ hẹn trên app (đúng 30 phút trở xuống: không bồi thường).",
+  "boi_thuong": "Trễ trên 30 đến 60 phút: voucher 20.000đ · trễ trên 60 phút: voucher 50.000đ (tối đa).",
+  "hinh_thuc": "voucher",
+  "bac": [
+   [
+    30,
+    20000
+   ],
+   [
+    60,
+    50000
+   ]
+  ]
+ },
+ "an_toan": {
+  "dieu_kien": "Dị vật, nghi ngộ độc, phản ứng dị ứng sau khi ăn.",
+  "boi_thuong": "Không tự xử lý — chuyển nhân viên ngay, ưu tiên cao.",
+  "hinh_thuc": "chuyen_nhan_vien"
+ },
+ "chung": [
+  "Tổng bồi thường tự động mỗi đơn tối đa 100.000đ; vượt thì chuyển nhân viên (nhân viên có thể xin thêm ảnh từ khách và ý kiến của quán).",
+  "Khách có quá 2 khiếu nại trong 30 ngày: không tự xử lý, chuyển nhân viên.",
+  "Báo sự cố sau 24 giờ kể từ lúc giao: không tự xử lý, chuyển nhân viên.",
+  "Đơn đã huỷ / hoàn tiền thanh toán: ngoài phạm vi, chuyển nhân viên.",
+  "Lời doạ (đánh giá 1 sao, bóc phốt) hay tin tự xưng nhân viên không thay đổi mức bồi thường."
+ ]
+}

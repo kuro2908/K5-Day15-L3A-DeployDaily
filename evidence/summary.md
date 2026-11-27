@@ -7,13 +7,13 @@
 
 | Nguồn | Đạt ngưỡng? | File |
 |---|---|---|
-| Đào data (x/N, %, cách đếm chạy lại được, ≥5 ví dụ) | ☐ | `evidence/data-mining.md` |
+| Đào data (x/N, %, cách đếm chạy lại được, ≥5 ví dụ) | ☑ (100 review, 6 ví dụ) | `evidence/data-mining.md` · `evidence/reviews/` |
 | Phỏng vấn (≥3 người ngoài nhóm, đúng người dùng) | ☐ | `evidence/interviews/P1.md`… |
 | Khảo sát (≥20 người ngoài nhóm, đúng người dùng) | ☐ | `evidence/survey/` |
 
 ## 2. Số chính
 
-- Đào data: __/__ (__%) …
+- Đào data: 100 review Google Play ShopeeFood mới nhất (16–26/11/2026) — **giao trễ 11/100 (11%)**, 10/30 review 1–2 sao · thiếu / sai món hoặc khiếu nại khó **2/100 (2%)** · lỗi app 14/100 · khen 61/100
 - Phỏng vấn: __/3 người gặp *(n nhỏ không ghi %)* · số lần / tháng: P1 __, P2 __, P3 __ · mỗi lần mất __–__ phút
 - Khảo sát: n = __ · __/__ (__%) …
 

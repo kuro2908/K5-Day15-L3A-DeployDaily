@@ -84,14 +84,19 @@ Nhóm dùng stack khác (Node, Streamlit, notebook…): sửa hàm `run_app()` t
 
 | Thành phần | Thật / Giả | Ghi chú |
 |---|---|---|
-| Lời gọi AI ở quyết định trung tâm | **Thật** (bắt buộc từ CP3) | Model: ____ |
-|  |  |  |
+| Lời gọi AI ở quyết định trung tâm (hiểu khiếu nại, chọn hướng xử lý) | **Thật** (bắt buộc từ CP3) — CP2 đang chạy chế độ `fake` | Model: ____ · `codebase/ai.py` hỗ trợ `gemini`, `openai`, `anthropic` |
+| Tính tiền bồi thường, kiểm hạn mức | **Thật** — code (`compute_compensation`) | Theo `data/policy.json` |
+| Đơn hàng, chính sách, lịch sử khiếu nại | **Giả** — `synthetic`, seed 42 | `data/generate.py`, `data/DATA_CARD.md` |
+| Hoàn tiền, voucher, chuyển nhân viên | **Giả** — chỉ tạo bản nháp | Không nối hệ thống thật nào |
+| Review dùng làm bằng chứng và nguồn câu thử | **Thật** — review công khai Google Play | `evidence/reviews/` |
+
+**Thử nhanh:** `python run.py` rồi gõ `Đơn DH1001 của mình thiếu 1 ly trà sữa trân châu nha`. Chấm một lượt: `python run.py eval` → `python eval/grade.py eval/run-N.csv` → `python run.py score eval/run-N.csv`. Sinh lại data: `python data/generate.py`.
 
 ## Dùng AI vào việc gì
 
 2–3 dòng (bắt buộc): nhóm dùng công cụ AI nào để làm gì, người kiểm lại phần nào. Chi tiết: [docs/ai-usage.md](docs/ai-usage.md). Coding agent đọc [AGENTS.md](AGENTS.md).
 
-____
+Nhóm dùng Claude Code để soạn nháp code bản chạy thử, prompt, bộ câu hỏi khảo sát / phỏng vấn, 16 câu thử đầu, và để cào + gắn nhãn lượt đầu 100 review Google Play. Người phụ trách từng phần đọc lại, chạy thử và kiểm tay (gắn nhãn lại 30 review, kiểm `expected` theo chính sách, kiểm 16 đơn kịch bản). Không dùng AI để tạo người được phỏng vấn, câu trả lời khảo sát hay trích dẫn.
 
 ## File mẫu — điền ở bước nào
 
