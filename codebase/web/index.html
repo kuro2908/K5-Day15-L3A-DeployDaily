@@ -20,7 +20,7 @@
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
-body{margin:0;min-height:100dvh;color:var(--ink);font:400 16px/1.55 var(--f-body);background:var(--tile);
+body{margin:0;height:100dvh;overflow:hidden;color:var(--ink);font:400 16px/1.55 var(--f-body);background:var(--tile);
   background-image:linear-gradient(var(--tile-line) 1px,transparent 1px),linear-gradient(90deg,var(--tile-line) 1px,transparent 1px);
   background-size:44px 44px}
 button,input,textarea{font:inherit;color:inherit}
@@ -30,10 +30,16 @@ button,input,textarea{font:inherit;color:inherit}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
 /* ---------- khung trang: đơn | chat | phiếu ---------- */
-.app{max-width:1520px;margin:0 auto;padding:clamp(12px,2.4vw,26px) clamp(12px,2.4vw,26px) 20px;display:grid;
-  grid-template-columns:320px minmax(0,1fr) 360px;grid-template-areas:"head head head" "orders chat slip";
-  gap:clamp(14px,1.8vw,22px);align-items:start}
-.app>*{min-width:0}
+.app{max-width:1520px;height:100dvh;margin:0 auto;padding:clamp(12px,2.4vw,26px) clamp(12px,2.4vw,26px) clamp(12px,2vw,20px);display:grid;
+  grid-template-columns:320px minmax(0,1fr) 360px;grid-template-rows:auto minmax(0,1fr);grid-template-areas:"head head head" "orders chat slip";
+  gap:clamp(14px,1.8vw,22px);align-items:stretch}
+.app>*{min-width:0;min-height:0}
+/* thanh cuộn mảnh, chỉ hiện rõ khi rê chuột */
+.olist,.thread,.slip-col{scrollbar-width:thin;scrollbar-color:transparent transparent}
+.olist:hover,.thread:hover,.slip-col:hover{scrollbar-color:#C3CFC8 transparent}
+.olist::-webkit-scrollbar,.thread::-webkit-scrollbar,.slip-col::-webkit-scrollbar{width:8px}
+.olist::-webkit-scrollbar-thumb,.thread::-webkit-scrollbar-thumb,.slip-col::-webkit-scrollbar-thumb{background:transparent;border-radius:8px;border:2px solid transparent;background-clip:padding-box}
+.olist:hover::-webkit-scrollbar-thumb,.thread:hover::-webkit-scrollbar-thumb,.slip-col:hover::-webkit-scrollbar-thumb{background-color:#C3CFC8}
 header.top{grid-area:head;display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:10px 24px}
 .brand h1{font:800 clamp(26px,3.6vw,40px)/1.02 var(--f-display);letter-spacing:-.02em;margin:0}
 .brand p{margin:.4em 0 0;color:var(--ink-2);max-width:62ch}
@@ -45,7 +51,7 @@ header.top{grid-area:head;display:flex;flex-wrap:wrap;align-items:flex-end;justi
 .open-orders{display:none;border:0;border-radius:999px;padding:8px 14px;background:var(--ink);color:var(--paper);font-weight:600;cursor:pointer}
 
 /* ---------- cột đơn hàng ---------- */
-.orders-col{grid-area:orders;position:sticky;top:16px;max-height:calc(100dvh - 32px);display:flex;flex-direction:column;
+.orders-col{grid-area:orders;display:flex;flex-direction:column;
   background:var(--paper);border:1px solid var(--tile-line);border-radius:var(--radius-l);overflow:hidden}
 .ocol-head{padding:16px 16px 10px;border-bottom:1px dashed var(--tile-line)}
 .ocol-head h2{font:700 18px/1.2 var(--f-display);margin:0 0 2px;display:flex;justify-content:space-between;align-items:baseline}
@@ -54,7 +60,7 @@ header.top{grid-area:head;display:flex;flex-wrap:wrap;align-items:flex-end;justi
 .search{width:100%;padding:9px 12px;border-radius:var(--radius-s);border:1.5px solid var(--tile-line);background:#fff;font-size:14px}
 .search:focus{outline:none;border-color:var(--ink-2)}
 .close-orders{display:none}
-.olist{flex:1;overflow-y:auto;padding:10px;display:flex;flex-direction:column;gap:8px;scroll-behavior:smooth}
+.olist{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:10px;display:flex;flex-direction:column;gap:8px;scroll-behavior:smooth}
 .olist-empty{color:var(--ink-3);font-size:14px;padding:10px}
 
 .ocard{border-radius:var(--radius-m);background:var(--paper-2);border:1.5px solid transparent;transition:border-color .2s,background .2s,box-shadow .2s}
@@ -116,8 +122,8 @@ header.top{grid-area:head;display:flex;flex-wrap:wrap;align-items:flex-end;justi
 
 /* ---------- khung chat ---------- */
 .chat{grid-area:chat;background:var(--paper);border-radius:var(--radius-l);border:1px solid var(--tile-line);
-  display:flex;flex-direction:column;height:calc(100dvh - 32px - var(--head-h,110px));min-height:560px;overflow:hidden}
-.thread{flex:1;overflow-y:auto;padding:clamp(16px,2.4vw,24px);display:flex;flex-direction:column;gap:14px;scroll-behavior:smooth}
+  display:flex;flex-direction:column;overflow:hidden}
+.thread{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:clamp(16px,2.4vw,24px);display:flex;flex-direction:column;gap:14px;scroll-behavior:smooth}
 .welcome{margin:auto 0;max-width:520px}
 .welcome .wave{font:800 clamp(22px,2.6vw,28px)/1.15 var(--f-display);margin:0 0 8px;letter-spacing:-.01em}
 .welcome p{margin:0 0 14px;color:var(--ink-2)}
@@ -145,24 +151,44 @@ header.top{grid-area:head;display:flex;flex-wrap:wrap;align-items:flex-end;justi
 .ctx .chip button{all:unset;cursor:pointer;width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-size:13px;line-height:1}
 .ctx .chip button:hover{background:#CFE6D7}
 .ctx .chip button:focus-visible{outline:2px solid var(--hoi)}
-.sugs{display:flex;gap:8px;overflow-x:auto;padding:10px 14px 2px;scrollbar-width:thin;scroll-snap-type:x proximity}
-.sug{all:unset;flex:none;cursor:pointer;scroll-snap-align:start;padding:8px 13px;border-radius:999px;background:var(--tile);
-  font-size:14px;font-weight:500;border:1.5px solid transparent;white-space:nowrap;transition:all .15s;animation:pop .25s ease-out both}
-.sug:hover{border-color:var(--ink-3);background:#fff}
+.sugs-wrap{position:relative}
+.sugs-wrap::before,.sugs-wrap::after{content:"";position:absolute;top:0;bottom:0;width:28px;z-index:1;pointer-events:none;opacity:0;transition:opacity .2s}
+.sugs-wrap::before{left:0;background:linear-gradient(90deg,var(--paper),transparent)}
+.sugs-wrap::after{right:0;background:linear-gradient(270deg,var(--paper),transparent)}
+.sugs-wrap.l::before,.sugs-wrap.r::after{opacity:1}
+.sugs{display:flex;gap:8px;overflow-x:auto;padding:12px 14px 4px;scrollbar-width:none;scroll-behavior:smooth;scroll-padding:0 14px}
+.sugs::-webkit-scrollbar{display:none}
+.sug{all:unset;box-sizing:border-box;flex:none;cursor:pointer;display:inline-flex;align-items:center;gap:7px;padding:7px 14px 7px 11px;
+  border-radius:999px;background:#fff;border:1px solid var(--tile-line);color:var(--ink-2);font-size:13.5px;font-weight:500;
+  white-space:nowrap;box-shadow:0 1px 2px rgba(29,42,36,.06);transition:border-color .15s,color .15s,transform .15s,box-shadow .15s;
+  animation:pop .25s ease-out both}
+.sug::before{content:"";width:6px;height:6px;border-radius:50%;background:#BFCAC4;flex:none;transition:background .15s}
+.sug:hover{border-color:var(--ink-3);color:var(--ink);transform:translateY(-1px);box-shadow:0 6px 14px -10px rgba(29,42,36,.5)}
+.sug:hover::before{background:var(--ink-2)}
+.sug:active{transform:none}
 .sug:focus-visible{outline:3px solid var(--hoi);outline-offset:1px}
-.sug.hot{background:var(--ink);color:var(--paper)}
-.sug.hot:hover{background:#2C3B34}
-form.compose{display:flex;gap:10px;align-items:flex-end;padding:10px 12px 12px}
-.compose textarea{flex:1;resize:none;min-height:48px;max-height:160px;padding:12px 14px;border-radius:14px;
-  border:1.5px solid var(--tile-line);background:#fff;line-height:1.45;transition:border-color .2s,box-shadow .2s}
-.compose textarea:focus{border-color:var(--ink-2);outline:none}
-.compose textarea.flash{box-shadow:0 0 0 4px var(--sel-bg);border-color:var(--sel)}
-.send{border:0;border-radius:14px;padding:0 20px;height:48px;background:var(--ink);color:var(--paper);font-weight:600;cursor:pointer}
-.send:disabled{opacity:.45;cursor:progress}
-.hint{font-size:12.5px;color:var(--ink-3);padding:0 14px 10px}
+.sug.hot{background:var(--sel-bg);border-color:#BFDCC9;color:var(--hoan);font-weight:600}
+.sug.hot::before{background:var(--hoan)}
+.sug.hot:hover{border-color:var(--hoan)}
+form.compose{margin:8px 12px 0;display:flex;gap:8px;align-items:flex-end;padding:6px 6px 6px 16px;border-radius:24px;
+  background:#fff;border:1.5px solid var(--tile-line);transition:border-color .2s,box-shadow .2s}
+form.compose:focus-within{border-color:var(--ink-3);box-shadow:0 0 0 4px rgba(124,135,129,.12)}
+form.compose.flash{border-color:var(--sel);box-shadow:0 0 0 4px var(--sel-bg)}
+.compose textarea{flex:1;resize:none;border:0;outline:none;background:transparent;min-height:40px;max-height:160px;padding:9px 0;
+  line-height:1.45;overflow-y:auto;scrollbar-width:none}
+.compose textarea::-webkit-scrollbar{display:none}
+.compose textarea::placeholder{color:var(--ink-3)}
+.compose textarea:focus-visible{outline:none}
+.send{flex:none;border:0;border-radius:50%;width:40px;height:40px;display:grid;place-items:center;background:var(--ink);color:var(--paper);
+  cursor:pointer;transition:background .15s,transform .15s,opacity .15s}
+.send:hover{background:#2C3B34;transform:translateY(-1px)}
+.send:disabled{opacity:.4;cursor:progress;transform:none}
+.send svg{width:18px;height:18px}
+.hint{font-size:12px;color:var(--ink-3);padding:7px 18px 10px}
+.hint kbd{font:500 11px var(--f-slip);padding:1px 5px;border-radius:5px;border:1px solid var(--tile-line);background:var(--paper-2)}
 
 /* ---------- phiếu xử lý ---------- */
-.slip-col{grid-area:slip;position:sticky;top:16px}
+.slip-col{grid-area:slip;overflow-y:auto;overscroll-behavior:contain;padding:0 6px 16px 0;margin-right:-6px}
 .slip{--c:var(--ink-3);position:relative;background:var(--paper);padding:24px 22px 20px;border-radius:4px 4px 0 0;
   box-shadow:var(--shadow);font-family:var(--f-slip);font-size:14px;line-height:1.5}
 .slip::after{content:"";position:absolute;left:0;right:0;bottom:-11px;height:12px;
@@ -220,10 +246,12 @@ form.compose{display:flex;gap:10px;align-items:flex-end;padding:10px 12px 12px}
     transform:translateX(-102%);transition:transform .28s cubic-bezier(.2,.7,.2,1);box-shadow:0 0 0 100vmax rgba(29,42,36,0)}
   body.drawer .orders-col{transform:none;box-shadow:0 0 0 100vmax rgba(29,42,36,.35)}
   .close-orders{display:inline-flex;margin-top:10px;border:0;border-radius:999px;padding:8px 14px;background:var(--ink);color:var(--paper);font-weight:600;cursor:pointer}
-  .chat{height:calc(100dvh - 24px - var(--head-h,110px));min-height:480px;border-radius:16px}
+  .chat{border-radius:16px}
+  form.compose{margin:8px 10px 10px}
   .msg{max-width:92%}
   .peek{display:none}
 }
+@media (max-height:560px){body{height:auto;overflow:auto}.app{height:auto;grid-template-rows:auto 520px}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
@@ -266,13 +294,13 @@ form.compose{display:flex;gap:10px;align-items:flex-end;padding:10px 12px 12px}
     </div>
     <div class="dock">
       <div class="ctx" id="ctx" hidden></div>
-      <div class="sugs" id="sugs" role="group" aria-label="Gợi ý tin nhắn"></div>
+      <div class="sugs-wrap" id="sugsWrap"><div class="sugs" id="sugs" role="group" aria-label="Gợi ý tin nhắn"></div></div>
       <form class="compose" id="compose">
         <label for="text" class="sr">Tin nhắn</label>
         <textarea id="text" rows="1" maxlength="1000" placeholder="Kể ngắn chuyện gì xảy ra…" required></textarea>
-        <button class="send" id="send" type="submit">Gửi</button>
+        <button class="send" id="send" type="submit" aria-label="Gửi" title="Gửi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
       </form>
-      <div class="hint">Enter để gửi · Shift + Enter để xuống dòng · bấm gợi ý để điền sẵn câu</div>
+      <div class="hint"><kbd>Enter</kbd> gửi · <kbd>Shift</kbd> + <kbd>Enter</kbd> xuống dòng · bấm gợi ý để điền sẵn câu</div>
     </div>
   </main>
 
@@ -485,14 +513,26 @@ function renderDock(){
   } else { ctx.hidden = true; ctx.innerHTML = ""; }
   $("#sugs").innerHTML = suggestions().map((s, i) =>
     `<button type="button" class="sug ${s.hot ? "hot" : ""}" data-i="${i}" style="animation-delay:${i * 35}ms" title="${esc(s.text)}">${esc(s.label)}</button>`).join("");
+  $("#sugs").scrollLeft = 0; sugEdges();
 }
+function sugEdges(){
+  const s = $("#sugs"), w = $("#sugsWrap");
+  w.classList.toggle("l", s.scrollLeft > 2);
+  w.classList.toggle("r", s.scrollLeft + s.clientWidth < s.scrollWidth - 2);
+}
+$("#sugs").addEventListener("scroll", sugEdges, {passive: true});
+addEventListener("resize", sugEdges);
+$("#sugs").addEventListener("wheel", e => {
+  const s = e.currentTarget;
+  if (Math.abs(e.deltaY) > Math.abs(e.deltaX) && s.scrollWidth > s.clientWidth) { e.preventDefault(); s.scrollBy({left: e.deltaY, behavior: "instant"}); }
+}, {passive: false});
 function clearSel(){ sel.id = null; sel.kind = null; sel.items.clear(); }
 $("#ctx").addEventListener("click", e => { if (e.target.closest("#clearSel")) { clearSel(); renderOrders(); renderDock(); } });
 $("#sugs").addEventListener("click", e => {
   const b = e.target.closest(".sug"); if (!b) return;
   text.value = suggestions()[b.dataset.i].text; grow(); text.focus();
   text.setSelectionRange(text.value.length, text.value.length);
-  text.classList.add("flash"); setTimeout(() => text.classList.remove("flash"), 500);
+  const f = $("#compose"); f.classList.add("flash"); setTimeout(() => f.classList.remove("flash"), 500);
 });
 
 /* ---------- ngăn kéo trên điện thoại ---------- */

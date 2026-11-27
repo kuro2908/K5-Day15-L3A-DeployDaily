@@ -97,8 +97,10 @@ def call_gemini(system, user):
 
 def call_openai(system, user):
     messages = ([{"role": "system", "content": system}] if system else []) + [{"role": "user", "content": user}]
-    data = post_json("https://api.openai.com/v1/chat/completions", {"Authorization": "Bearer " + API_KEY},
-                     {"model": MODEL_NAME, "messages": messages, "response_format": {"type": "json_object"}})
+    body = {"model": MODEL_NAME, "messages": messages}
+    if "json" in ((system or "") + user).lower():  # OpenAI chỉ cho json_object khi prompt có nhắc "json"
+        body["response_format"] = {"type": "json_object"}
+    data = post_json("https://api.openai.com/v1/chat/completions", {"Authorization": "Bearer " + API_KEY}, body)
     u = data["usage"]
     return {"text": data["choices"][0]["message"]["content"],
             "tokens_in": u["prompt_tokens"], "tokens_out": u["completion_tokens"]}
