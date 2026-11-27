@@ -1,9 +1,9 @@
-# AI SPEC — Khiếu nại đơn đồ ăn thiếu / sai món trong hạn mức · Nhóm DeployDaily · Phòng [XXX] · Zone [X]
+# AI SPEC — Khiếu nại đơn đồ ăn thiếu / sai món, giao trễ — bồi thường trong hạn mức · Nhóm DeployDaily · Phòng [XXX] · Zone [X]
 
 > Mốc nộp: §7 chốt chuẩn "đạt" tại **CP2 19:30 Thứ Sáu 27/11** · §0–§7 nộp **CP3 10:00 Thứ Bảy 28/11** · đủ §0–§10 **CP4 14:30 Thứ Bảy 28/11** · §10 changelog ghi tiếp đến **23:59 Thứ Bảy 28/11**.
 > Đầu mỗi mục ghi bước guide (`02-guide.md` trong repo đề) chỉ cách điền. Mỗi mục ngắn, có số và nguồn; chi tiết để ở file được trỏ tới. Xoá dòng hướng dẫn trong ngoặc vuông khi điền xong.
 
-Track: [ ] A · [ ] B · [ ] C · [x] D · [ ] E — bài toán: D1 · Xử lý khiếu nại đơn giao đồ ăn (hướng gợi ý trong `tracks/track-d-ecommerce.md`), thu hẹp vào đơn **thiếu / sai món**
+Track: [ ] A · [ ] B · [ ] C · [x] D · [ ] E — bài toán: D1 · Xử lý khiếu nại đơn giao đồ ăn (hướng gợi ý trong `tracks/track-d-ecommerce.md`), thu hẹp vào đơn **thiếu / sai món và giao trễ** *(CP2: thêm giao trễ theo review)*
 Data BTC cấp đã dùng (nếu có — không commit nguyên file): không (track D không có data BTC cấp)
 
 ## §0. Hiện tại việc này diễn ra thế nào *(guide 1.1)*
@@ -16,10 +16,10 @@ Data BTC cấp đã dùng (nếu có — không commit nguyên file): không (tr
 - Công cụ / AI đang được dùng cho việc này (nếu có) + nguồn. Không kiểm được thì ghi "chưa kiểm": theo `tracks/track-d-ecommerce.md` (BTC kiểm 11/11/2026), trợ lý "Trò chuyện với Shopee" chủ yếu chạy theo menu có sẵn. Trợ lý trong app giao đồ ăn: **chưa kiểm**.
 
 ## §1. Người dùng & bằng chứng *(guide 1.1, 1.2)*
-- Người dùng chính (một vai cụ thể): sinh viên / người đi làm đặt đồ ăn qua app (ShopeeFood, GrabFood, BeFood…) vài lần mỗi tuần, vừa nhận một đơn bị thiếu hoặc sai món. *(Vai phụ để kiểm lại: chủ quán / người bán — bên bị khiếu nại.)*
-- Việc họ cố làm xong (`động từ + đối tượng + bối cảnh`, không có chữ AI): **đòi lại đúng phần tiền của món bị thiếu / sai, ngay sau khi nhận đơn, mà không mất nhiều thời gian.**
+- Người dùng chính (một vai cụ thể): sinh viên / người đi làm đặt đồ ăn qua app (ShopeeFood, GrabFood, BeFood…) vài lần mỗi tuần, vừa nhận một đơn bị thiếu / sai món hoặc giao trễ. *(Vai phụ để kiểm lại: chủ quán / người bán — bên bị khiếu nại.)*
+- Việc họ cố làm xong (`động từ + đối tượng + bối cảnh`, không có chữ AI): **được bồi thường đúng chính sách cho đơn bị thiếu / sai món hoặc giao trễ, ngay sau khi nhận đơn, mà không mất nhiều thời gian.**
 - Hôm nay họ giải bằng gì, hỏng ở đâu, vì sao chưa bỏ: *(giả thuyết, chờ khảo sát + phỏng vấn kiểm)* khiếu nại qua menu trong app, gọi / nhắn quán hoặc shipper, hoặc bỏ qua. Hỏng ở chỗ: nhiều bước, chờ nhân viên, kết quả hay là voucher thay vì hoàn đúng phần thiếu. Chưa bỏ vì đó là kênh duy nhất để được hoàn tiền, và số tiền mỗi lần nhỏ nên không đáng làm to.
-- Pain (KHÔNG chữ AI): người đặt đồ ăn vừa nhận đơn thiếu / sai món → phải khiếu nại qua nhiều bước, chờ trả lời → mất thời gian giữa bữa ăn, thường không được hoàn đúng phần thiếu, nhiều người bỏ qua và chịu mất tiền; phía quán có lúc bị trừ tiền dù giao đúng.
+- Pain (KHÔNG chữ AI): người đặt đồ ăn vừa nhận đơn thiếu / sai món hoặc giao trễ → phải khiếu nại qua nhiều bước, chờ trả lời, không biết mình có được bồi thường không và bao nhiêu → mất thời gian giữa bữa ăn, thường không được hoàn đúng phần thiếu, nhiều người bỏ qua và chịu mất tiền. *(Vai phụ: phía quán có lúc bị trừ tiền dù giao đúng.)*
 - Bằng chứng — số chính + kết luận (chi tiết: `evidence/summary.md`): **review Google Play ShopeeFood (100 mới nhất, 16–26/11/2026): giao trễ 11/100 (10/30 review 1–2 sao), thiếu / sai món + khiếu nại khó 2/100** → giả thuyết "thiếu / sai món là pain chính" chưa được ủng hộ, lát cắt mở rộng thêm giao trễ. Đang chờ: khảo sát ≥20 (nguồn chính), phỏng vấn ≥3 + 1 chủ quán.
 
 ## §2. Impact & quyết định chọn *(guide 1.3)*
