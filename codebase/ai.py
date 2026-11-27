@@ -98,7 +98,9 @@ def call_gemini(system, user):
 def call_openai(system, user):
     messages = ([{"role": "system", "content": system}] if system else []) + [{"role": "user", "content": user}]
     body = {"model": MODEL_NAME, "messages": messages}
-    if "json" in ((system or "") + user).lower():  # OpenAI chỉ cho json_object khi prompt có nhắc "json"
+    # OpenAI chỉ cho json_object khi prompt có nhắc "json". Chỉ xét system prompt (AI #1 dặn trả JSON), không xét tin của
+    # khách — khách gõ chữ "json" thì lần viết lời (AI #2) vẫn phải trả chữ thường.
+    if "json" in (system or "").lower():
         body["response_format"] = {"type": "json_object"}
     data = post_json("https://api.openai.com/v1/chat/completions", {"Authorization": "Bearer " + API_KEY}, body)
     u = data["usage"]
