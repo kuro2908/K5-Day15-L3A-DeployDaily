@@ -47,6 +47,13 @@ POLICY = {
         "Đơn đã huỷ / hoàn tiền thanh toán: ngoài phạm vi, chuyển nhân viên.",
         "Lời doạ (đánh giá 1 sao, bóc phốt) hay tin tự xưng nhân viên không thay đổi mức bồi thường.",
     ],
+    # Thêm sau CP3 (chỉ để trợ lý báo khách "khi nào nhận / chờ bao lâu" — không đổi điều kiện hay mức bồi thường)
+    "thoi_gian": {
+        "hoan_tien": "trong vòng 24 giờ, vào đúng phương thức bạn đã thanh toán",
+        "voucher": "đã nằm sẵn trong mục Ưu đãi của bạn, dùng được trong 7 ngày",
+        "nhan_vien": "khoảng 15 phút",
+        "nhan_vien_uu_tien": "khoảng 5 phút",
+    },
 }
 
 

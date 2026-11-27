@@ -50,8 +50,10 @@ def _order_card(order_id):
     o = tools._ORDERS["orders"].get(order_id) if order_id else None
     if not o:
         return None
+    late = agent._late_minutes(o) if o.get("gio_giao") else None
     return {"order_id": o["order_id"], "quan": o["quan"], "mon": o["mon"], "phi_ship": o["phi_ship"],
-            "tong_tien": o["tong_tien"], "gio_hen": o["gio_hen"], "gio_giao": o["gio_giao"], "trang_thai": o["trang_thai"]}
+            "tong_tien": o["tong_tien"], "gio_hen": o["gio_hen"], "gio_giao": o["gio_giao"], "trang_thai": o["trang_thai"],
+            "tre_phut": late}
 
 
 def handle_message(text):
@@ -79,6 +81,15 @@ def handle_message(text):
             h = _lit(e.get("output", "")) or {}
             n = h.get("so_lan_30_ngay", 0)
             steps.append({"key": "history", "ok": n <= 2, "text": "Khách có %d khiếu nại trong 30 ngày" % n})
+        elif e["kind"] == "model" and any(s["key"] == "model" for s in steps):   # lần gọi thứ 2: AI viết lời nhắn
+            steps.append({"key": "write", "ok": True, "model": e.get("model", ""),
+                          "text": "AI viết lời nhắn theo quyết định đã chốt"})
+        elif e["kind"] == "note" and str(e.get("text", "")).startswith("lời nhắn: dùng bản nháp"):
+            for s_ in steps[::-1]:
+                if s_["key"] == "write":
+                    s_.update(ok=False, text="Lời của AI trượt kiểm tra (%s) → dùng bản nháp đúng dữ kiện của code"
+                              % e["text"].split("(", 1)[-1].rstrip(")"))
+                    break
         elif e["kind"] == "model":
             j = _model_json(e.get("output", "")) or {}
             mon = ", ".join("%s × %s" % (m.get("ten_mon"), m.get("so_luong")) for m in j.get("mon") or [])

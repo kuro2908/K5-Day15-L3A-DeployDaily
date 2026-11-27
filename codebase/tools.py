@@ -43,8 +43,8 @@ def get_order(order_id: str):
 @tool
 def get_policy(issue_type: str = ""):
     """Tra chính sách. Input: loại sự cố (thieu_mon | sai_mon | giao_tre | an_toan) hoặc rỗng = quy định chung.
-    Output: dict điều kiện + mức bồi thường + quy định chung. Không tác động ra ngoài."""
-    out = {"chung": _POLICY["chung"]}
+    Output: dict điều kiện + mức bồi thường + quy định chung + thời gian xử lý. Không tác động ra ngoài."""
+    out = {"chung": _POLICY["chung"], "thoi_gian": _POLICY.get("thoi_gian", {})}
     if issue_type in _POLICY:
         p = dict(_POLICY[issue_type])
         p.pop("bac", None)

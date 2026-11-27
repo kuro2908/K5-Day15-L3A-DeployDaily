@@ -52,17 +52,21 @@ Data BTC cấp đã dùng (nếu có — không commit nguyên file): không (tr
 flowchart TD
     K[Tin nhắn khiếu nại của khách] --> R["[code] Tìm mã đơn DHxxxx"]
     R --> T1["[công cụ đọc] get_order · get_complaint_history · get_policy"]
-    T1 --> AI["[AI — 1 lần gọi] Hiểu khiếu nại:<br/>loại sự cố · món nào · hướng xử lý · lời nhắn có chỗ {so_tien}"]
+    T1 --> AI["[AI #1] Hiểu khiếu nại:<br/>loại sự cố · món nào · hướng xử lý"]
     AI --> C["[code] compute_compensation<br/>tính tiền + kiểm hạn mức theo data/policy.json"]
     C --> G{"[code] LỚP CHẶN RỦI RO"}
     G -- "an toàn thực phẩm · quá 2 khiếu nại/30 ngày<br/>vượt 100.000đ · đơn đã huỷ · báo sau 24h" --> H["escalate_to_human (đảo được)<br/>→ NHÂN VIÊN DUYỆT"]
     G -- "món không có trong đơn · thiếu mã đơn" --> Q[Hỏi lại 1 câu]
     G -- "không đủ điều kiện (vd trễ ≤ 30 phút)" --> TC[Từ chối + giải thích chính sách]
     G -- "đủ điều kiện, trong hạn mức" --> P["issue_refund / issue_voucher (BẢN NHÁP)<br/>số tiền chỉ lấy từ code"]
-    H & Q & TC & P --> O["Trả lời khách + dòng [QUYET_DINH] huong; so_tien"]
+    H & Q & TC & P --> W["[AI #2] Viết lời nhắn từ quyết định ĐÃ CHỐT<br/>+ dữ kiện thật (món, phút, {so_tien}, thời gian)"]
+    W --> V{"[code] Kiểm lời nhắn<br/>số tiền lạ · hỏi xác nhận khi đã hoàn · SĐT"}
+    V -- "trượt" --> D["Bản nháp đúng dữ kiện của code"]
+    V -- "đạt" --> O["Trả lời khách + dòng [QUYET_DINH] huong; so_tien"]
+    D --> O
 ```
 
-- **Hình dạng:** [x] workflow cố định · [ ] một agent · [ ] nhiều agent — Các bước luôn giống nhau (tìm đơn → tra dữ liệu → hiểu khiếu nại → tính tiền → chặn → trả lời), chỉ có **một** chỗ cần hiểu ngôn ngữ tự nhiên là đọc tin nhắn của khách. Workflow rẻ hơn (1 lần gọi model / lượt) và dễ đo hơn. **Không chọn agent** vì không muốn model tự quyết gọi `issue_refund` (khó đảo) hay tự chọn thứ tự tra cứu; không chọn nhiều agent vì không có vai nào khác nhau thật sự.
+- **Hình dạng:** [x] workflow cố định · [ ] một agent · [ ] nhiều agent — Các bước luôn giống nhau (tìm đơn → tra dữ liệu → hiểu khiếu nại → tính tiền → chặn → trả lời), chỉ có **hai** chỗ cần ngôn ngữ tự nhiên: đọc tin nhắn của khách (AI #1) và viết lời trả lời khi quyết định đã chốt (AI #2). Workflow rẻ hơn (2 lần gọi model / lượt) và dễ đo hơn. *(Đến lượt 2 là 1 lần gọi — đổi sau CP3, xem §10.)* **Không chọn agent** vì không muốn model tự quyết gọi `issue_refund` (khó đảo) hay tự chọn thứ tự tra cứu; không chọn nhiều agent vì không có vai nào khác nhau thật sự.
 - **AI dựa vào đâu** — mỗi công cụ (khớp `codebase/tools.py`):
 
   | Công cụ | Input | Output | Tác động ra ngoài? |
@@ -151,6 +155,9 @@ flowchart TD
 | 27/11 tối | `evidence/summary.md` mục 3–5, `spec.md` §3, README ghi model | Chuẩn bị CP3 |
 | 27/11 19:15 | Thêm giao diện web `codebase/web.py` + `codebase/web/index.html`, lệnh `python run.py web` — chỉ hiển thị, gọi `agent.answer()` không đổi; không ảnh hưởng `eval` / `simulate` | Demo và video dễ xem: thấy quyết định, số tiền và chỗ lớp chặn can thiệp |
 | 27/11 19:00 | **Cải tiến sau lượt 1** (một nhóm lỗi: *lớp chặn chưa kiểm hết output của model*): `agent.py` thêm `_claimed_over_order` (số lượng khách báo > số trong đơn → hỏi lại) và nâng CHUYEN_NHAN_VIEN → HOAN_TIEN khi code đã tính đủ điều kiện thiếu / sai món và khách không đòi gặp người. Prompt, công cụ, chính sách, câu thử, chuẩn "đạt" không đổi | Lượt 1 trượt B21 (model tự đổi "thiếu 5" thành 3 → hoàn 36.000đ, vi phạm `khong_vuot_han_muc`) và B02 (sai món đủ điều kiện mà chuyển người). Lượt 2 `run-2@20261127-190307`: 30/30 |
+
+| 28/11 (nhánh `minh/test/…`) | **Tách AI làm 2 lần gọi**: AI #1 chỉ hiểu khiếu nại (bỏ `loi_nhan`), AI #2 viết lời nhắn SAU khi code chốt quyết định, theo quy tắc giọng (xưng "mình – bạn", đồng cảm có chi tiết → đã kiểm gì → kết quả + khi nào nhận → lối ra). Code kiểm lời của AI #2 (số tiền lạ, hỏi xác nhận khi đã hoàn, SĐT, chuyển người mà không nói); trượt thì dùng bản nháp của code. `data/policy.json` thêm mục `thoi_gian` (khi nào nhận tiền / voucher, chờ nhân viên bao lâu) — **không đổi điều kiện hay mức bồi thường**, đơn hàng và lịch sử giữ nguyên (đã so file). Hướng xử lý và số tiền (bước 1–5) không đổi: phát lại JSON AI #1 của lượt 2 qua luồng mới → 0/30 câu đổi `[QUYET_DINH]` | Đọc 30 output lượt 2: 8 câu chuyển người dùng chung một câu mẫu cứng (B07, B13, B14, B17, B23, B24, B26, B29); lời nhắn lệch hành động (B03, B27, B28 "bạn xác nhận giúp…" trong khi đã hoàn; B11 hỏi lại trong khi đã chuyển người); xưng hô lẫn lộn. Gốc: lời viết cùng lúc với quyết định nên bị bỏ khi lớp chặn đổi quyết định. Chi phí / lượt tăng vì thêm 1 lần gọi — tính lại ở §8. Chạy bằng model thật sẽ ghi thành **lượt 3** |
+| 28/11 (nhánh `minh/test/…`) | Giao diện web: cột **Đơn gần đây** bên trái (rê chuột xem nhanh hoá đơn; bấm mở hoá đơn để chọn cả đơn / một hay nhiều món, có số phần bị ảnh hưởng / dòng giờ giao); **gợi ý chat đổi theo lựa chọn và luôn hiện** (trước chỉ hiện ở lần đầu); "Đường đi của quyết định" thêm bước AI #2; điện thoại: cột đơn thành ngăn kéo. Tin gửi đi vẫn là văn bản thường qua `agent.answer()` như `eval` | Góp ý của nhóm khi dùng thử: danh sách đơn nằm dưới khó thấy, gợi ý mất sau câu đầu |
 
 **Sau CP4 (đến 23:59 Thứ Bảy 28/11)** (sửa theo góp ý — không sửa chuẩn "đạt", câu thử, số bằng chứng, kết quả các lượt đã chạy)
 
