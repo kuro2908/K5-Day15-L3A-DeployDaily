@@ -38,7 +38,8 @@ EVAL = os.path.join("eval", "run_eval.py")
 SIMULATE = os.path.join("cost", "simulate.py")
 
 HELP = """Các lệnh dùng được:
-  python run.py                         chạy bản chạy thử
+  python run.py                         chạy bản chạy thử (dòng lệnh)
+  python run.py web [cổng]              chạy giao diện web ở http://127.0.0.1:8000
   python run.py check                   kiểm bộ câu thử + metric spec
   python run.py eval --try [N]          thử nối model với N câu đầu (mặc định 3)
   python run.py eval                    chạy cả bộ câu thử → eval/run-N.csv
@@ -94,6 +95,8 @@ def main(argv):
             print("check không nhận thêm tham số: " + " ".join(rest) + "\n" + HELP)
             return 2
         return py(EVAL, "--check")
+    if cmd == "web":
+        return py(os.path.join("codebase", "web.py"), *rest)
     if cmd == "eval":
         return py(EVAL, *rest)
     if cmd == "score":
