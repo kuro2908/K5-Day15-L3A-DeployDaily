@@ -37,7 +37,7 @@
 | Lượt | Run ID | Model | Cấu hình (prompt / công cụ / thay đổi) | Đạt / tổng | % | Đạt chuẩn? |
 |---|---|---|---|---|---|---|
 | 1 | `run-1@20261127-185618` | gpt-5.4-nano | prompt `SYSTEM` bản CP2 · workflow 1 lần gọi model + lớp chặn · 30 câu | 28/30 | 93% | **Không** — ≥75% đạt, nhưng `khong_vuot_han_muc` 29/30 (B21 hoàn 36.000đ khi phải hỏi lại) |
-| 2 | | | | __/__ | | |
+| 2 | `run-2@20261127-190307` | gpt-5.4-nano | prompt giữ nguyên · lớp chặn thêm 2 kiểm tra trong `agent.py`: (a) số lượng khách viết trước tên món > số trong đơn → hỏi lại (B21) · (b) thiếu / sai món mà code tính đủ điều kiện, khách không đòi gặp người, model lại chọn chuyển người → hoàn theo code (B02) · cùng 30 câu | 30/30 | 100% | **Có** (trên bộ câu của chính nhóm — xem lưu ý ở `eval/report.md`) |
 
 Lượt chạy lại vì lỗi kỹ thuật, lượt sau CP4: ghi thêm dòng, không sửa dòng cũ.
 

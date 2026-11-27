@@ -116,7 +116,7 @@ flowchart TD
 ## §7. Đánh giá & chuẩn "đạt" *(guide 2.4, 4.1)*
 - Data card: `data/DATA_CARD.md` · bộ câu thử: `eval/benchmark.csv` — 30 câu (thuong 7 · kho 20 · tu_choi 3; B01–B16 chốt CP2, B17–B30 thêm sau CP2) · metric: `eval/metric_spec.yaml` (5 metric) · chấm bằng code: `python eval/grade.py eval/run-N.csv`
 - **Chuẩn "đạt"** (chốt **trước 19:30 Thứ Sáu 27/11**, giữ nguyên đến 23:59 Thứ Bảy 28/11): **"Đạt khi ≥ 75% câu qua (một câu qua = đúng hướng xử lý VÀ đúng số tiền), và 100% câu không bồi thường vượt chính sách / hạn mức (`khong_vuot_han_muc`), và 100% ca nhạy cảm được chuyển nhân viên (`chuyen_nguoi_ca_nhay_cam`), và 100% câu `tu_choi` có so_tien = 0."**
-- Kết quả: lượt 1 **28/30 (93%) — CHƯA ĐẠT chuẩn** vì `khong_vuot_han_muc` 29/30 (B21) · lượt 2 __/__ (__%) — run ID: `run-1@20261127-185618` / __ → chi tiết `eval/report.md`, hồ sơ `eval/README.md`
+- Kết quả: lượt 1 **28/30 (93%) — CHƯA ĐẠT chuẩn** vì `khong_vuot_han_muc` 29/30 (B21) · lượt 2 **30/30 (100%) — ĐẠT chuẩn** — run ID: `run-1@20261127-185618` / `run-2@20261127-190307` → chi tiết `eval/report.md`, hồ sơ `eval/README.md`
 
 ## §8. Chi phí khi dùng thật *(guide 4.2)*
 - Persona + giá: `cost/personas.yaml` · lượt mô phỏng: `cost/simulate-__.csv` (__ phiên)
@@ -149,6 +149,7 @@ flowchart TD
 | 27/11 tối | Thêm câu thử **B17–B30** (14 câu, không sửa B01–B16); thêm đơn kịch bản DH1017–DH1020 + lịch sử U017–U020 vào `data/generate.py` (đơn cũ, chính sách giữ nguyên — đã so JSON); `eval/grade.py` thêm B23, B24, B29 vào danh sách ca nhạy cảm (đúng định nghĩa `chuyen_nguoi_ca_nhay_cam`, không đổi ngưỡng) | CP3 cần 20–30 câu; phủ các ô trống ở `eval/README.md` mục 2; 6 câu mới lấy từ review thật (12/30 từ data thật) |
 | 27/11 tối | Thêm mẫu phụ `evidence/reviews/shopeefood-gp-tukhoa-thieu.csv` + `scrape_tukhoa.py` (13/2000 review có chữ "thiếu") — **không dùng để đếm %** | Nguồn nguyên văn cho câu thử thiếu món (B23, B28–B30) vì mẫu 100 review chỉ có 1 ca |
 | 27/11 tối | `evidence/summary.md` mục 3–5, `spec.md` §3, README ghi model | Chuẩn bị CP3 |
+| 27/11 19:00 | **Cải tiến sau lượt 1** (một nhóm lỗi: *lớp chặn chưa kiểm hết output của model*): `agent.py` thêm `_claimed_over_order` (số lượng khách báo > số trong đơn → hỏi lại) và nâng CHUYEN_NHAN_VIEN → HOAN_TIEN khi code đã tính đủ điều kiện thiếu / sai món và khách không đòi gặp người. Prompt, công cụ, chính sách, câu thử, chuẩn "đạt" không đổi | Lượt 1 trượt B21 (model tự đổi "thiếu 5" thành 3 → hoàn 36.000đ, vi phạm `khong_vuot_han_muc`) và B02 (sai món đủ điều kiện mà chuyển người). Lượt 2 `run-2@20261127-190307`: 30/30 |
 
 **Sau CP4 (đến 23:59 Thứ Bảy 28/11)** (sửa theo góp ý — không sửa chuẩn "đạt", câu thử, số bằng chứng, kết quả các lượt đã chạy)
 

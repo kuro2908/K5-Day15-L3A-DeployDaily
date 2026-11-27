@@ -24,6 +24,22 @@ ORDER_RE = re.compile(r"\bDH\s?-?(\d{4})\b", re.IGNORECASE)
 # Từ khoá an toàn thực phẩm: code chặn cứng, không phụ thuộc model (lớp chặn rủi ro #1)
 SAFETY_RE = re.compile(r"dị vật|tóc|gián|ruồi|sâu|mảnh (kính|nhựa|kim loại)|ngộ độc|đau bụng|tiêu chảy|nôn|ói|"
                        r"dị ứng|nổi mẩn|khó thở|sốt", re.IGNORECASE)
+# Khách tự đòi gặp người / không đồng ý → không tự nâng lên hoàn tiền (lượt 2, sửa B02)
+WANTS_HUMAN_RE = re.compile(r"nhân viên|quản lý|người thật|gặp người|không đồng ý|ko đồng ý", re.IGNORECASE)
+UNIT = r"(?:cái|chiếc|phần|suất|ly|cốc|lon|chai|hộp|tô|bát|miếng|khay|combo|đĩa|xiên)?"
+
+
+def _claimed_over_order(text, order):
+    """Lượt 2 (sửa B21): đọc số lượng khách tự viết trước tên món trong tin nhắn (vd "thiếu 5 cái nem rán").
+    Nếu số đó LỚN HƠN số lượng trong đơn → trả về mô tả lệch để hỏi lại; model không được tự sửa số lượng."""
+    low = (text or "").lower()
+    for line in (order or {}).get("mon", []):
+        name = re.escape(line["ten_mon"].lower())
+        for mt in re.finditer(r"(\d+)\s*%s\s*%s" % (UNIT, name), low):
+            n = int(mt.group(1))
+            if n > line["so_luong"]:
+                return "khách báo %d %s nhưng đơn chỉ có %d" % (n, line["ten_mon"], line["so_luong"])
+    return None
 
 SYSTEM = """Bạn là trợ lý xử lý khiếu nại đơn giao đồ ăn của "App Mẫu". Khách nhắn khiếu nại; bạn được cung cấp
 dữ liệu đơn hàng, lịch sử khiếu nại và chính sách lấy từ hệ thống. Nhiệm vụ: hiểu khiếu nại và chọn MỘT hướng xử lý.
@@ -111,6 +127,13 @@ def answer(text: str) -> dict:
         forced = ("HOI_THEM", "chưa có mã đơn")
     elif comp and comp["ket_luan"] == "chuyen_nhan_vien":
         forced = ("CHUYEN_NHAN_VIEN", comp["ly_do"])
+    elif order and issue in ("thieu_mon", "sai_mon") and _claimed_over_order(text, order):
+        forced = ("HOI_THEM", _claimed_over_order(text, order))          # B21: số lượng khách báo > số trong đơn
+    elif (huong == "CHUYEN_NHAN_VIEN" and issue in ("thieu_mon", "sai_mon") and comp
+          and comp["ket_luan"] == "du_dieu_kien" and not WANTS_HUMAN_RE.search(text or "")):
+        # B02: code đã kiểm đủ điều kiện (trong hạn mức, lịch sử sạch, < 24 giờ, đơn đã giao, không có ca an toàn)
+        # mà model vẫn chọn chuyển người → theo chính sách, hoàn ngay (số tiền vẫn chỉ từ code)
+        forced = ("HOAN_TIEN", comp["ly_do"])
     elif huong in ("HOAN_TIEN", "VOUCHER") and comp:
         if comp["ket_luan"] == "can_hoi_them":
             forced = ("HOI_THEM", comp["ly_do"])
