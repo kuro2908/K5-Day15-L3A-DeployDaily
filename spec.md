@@ -37,7 +37,10 @@ Data BTC cấp đã dùng (nếu có — không commit nguyên file): không (tr
 - Số lần / tháng của từng kiểu người dùng (dùng cho persona ở §8):
 
 ## §3. Giải pháp tương tự *(guide 2.1)*
-- [sản phẩm / tính năng gần giống]: một điều đáng học · một điều đáng né · mình khác gì
+- **Trợ lý "Trò chuyện với Shopee" (chạy theo menu có sẵn)** — theo `tracks/track-d-ecommerce.md` (BTC kiểm 11/11/2026): *đáng học:* đi theo luồng cố định, chọn sự cố từ danh sách → ít đường cho bot nói bậy · *đáng né:* khách phải tự dò menu, tin nhắn tự do không được hiểu · *mình khác:* khách nhắn tự nhiên một câu, AI chỉ làm bước **hiểu khiếu nại**, còn rẽ nhánh và số tiền vẫn do code theo chính sách (giữ cái an toàn của menu).
+- **Kênh nhân viên CSKH trong app giao đồ ăn** — theo review (`evidence/reviews/shopeefood-gp-100.csv` stt 15: *"2 tháng trời … ko hoàn lại tiền"*): *đáng học:* người xem được bằng chứng, xử ca khó · *đáng né:* khoản nhỏ, rõ ràng cũng phải chờ người · *mình khác:* ca nhỏ trong hạn mức xử ngay, ca hiểm (an toàn thực phẩm, vượt 100.000đ, khách > 2 khiếu nại / 30 ngày, đơn huỷ) vẫn chuyển người.
+- **Chính sách trả hàng / hoàn tiền trên sàn (người bán phản hồi, sàn xem xét nếu không thống nhất)** — theo file track: *đáng học:* nghe cả hai bên trước khi quyết · *mình khác:* lát cắt chỉ tự xử ca không cần phân xử (món có trong đơn, giờ giao có trong hệ thống); ca cần nghe quán thì chuyển người.
+- *Chưa kiểm trực tiếp:* trợ lý trong app GrabFood / BeFood — mỗi người thử 10 phút (guide 2.1) rồi bổ sung.
 
 ## §4. Thiết kế *(guide 2.2, 3.2)*
 - **Lát cắt MỘT CÂU** (chốt CP2): **Một người đặt đồ ăn · nhắn khiếu nại đơn vừa nhận bị thiếu / sai món hoặc giao trễ · AI hiểu khiếu nại và quyết định hoàn đúng phần thiếu, tặng voucher trễ, từ chối có giải thích, hỏi thêm, hay chuyển nhân viên — trong hạn mức chính sách · khách nhận lời xin lỗi kèm số tiền đúng chính sách, hoặc biết rõ bước tiếp theo.**

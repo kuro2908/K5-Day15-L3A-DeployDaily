@@ -84,7 +84,7 @@ Nhóm dùng stack khác (Node, Streamlit, notebook…): sửa hàm `run_app()` t
 
 | Thành phần | Thật / Giả | Ghi chú |
 |---|---|---|
-| Lời gọi AI ở quyết định trung tâm (hiểu khiếu nại, chọn hướng xử lý) | **Thật** (bắt buộc từ CP3) — CP2 đang chạy chế độ `fake` | Model: ____ · `codebase/ai.py` hỗ trợ `gemini`, `openai`, `anthropic` |
+| Lời gọi AI ở quyết định trung tâm (hiểu khiếu nại, chọn hướng xử lý) | **Thật** — nối từ 27/11 tối (`eval --try` lượt `run-try@20261127-180158`) | Model: `gpt-5.4-nano` (OpenAI) · `codebase/ai.py` hỗ trợ `gemini`, `openai`, `anthropic` |
 | Tính tiền bồi thường, kiểm hạn mức | **Thật** — code (`compute_compensation`) | Theo `data/policy.json` |
 | Đơn hàng, chính sách, lịch sử khiếu nại | **Giả** — `synthetic`, seed 42 | `data/generate.py`, `data/DATA_CARD.md` |
 | Hoàn tiền, voucher, chuyển nhân viên | **Giả** — chỉ tạo bản nháp | Không nối hệ thống thật nào |
