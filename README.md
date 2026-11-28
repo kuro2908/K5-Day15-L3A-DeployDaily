@@ -7,6 +7,8 @@
 
 *Lát cắt = phần nhỏ nhất làm xong được trong hackathon: một người dùng · một việc · một quyết định AI · một kết quả.*
 
+**Video bản chạy thử (AI thật):** [Google Drive](https://drive.google.com/file/d/1XUoNpSCbbi_Y8Y6RBjMMWMGObS4_D9cZ/view?usp=sharing) · **Slide:** [`demo-slides.pdf`](demo-slides.pdf) (bản HTML: [`slides/demo-slides.html`](slides/demo-slides.html))
+
 ---
 
 ## Nhóm làm gì, khung làm gì
@@ -129,5 +131,5 @@ Nhóm dùng Claude Code để soạn nháp code bản chạy thử, prompt, bộ
 | 4 | Bản chạy thử làm trọn lát cắt | `codebase/` · lệnh ở mục "Lệnh" |
 | 5 | Định nghĩa "tốt" + bộ câu thử | `data/DATA_CARD.md` · `eval/` |
 | 6 | Mô phỏng chi phí khi dùng thật | `cost/` |
-| 7 | Slide + demo + video dự phòng | `demo-slides.pdf` ở thư mục gốc · link video: ____ |
+| 7 | Slide + demo + video dự phòng | `demo-slides.pdf` ở thư mục gốc · link video: [Google Drive](https://drive.google.com/file/d/1XUoNpSCbbi_Y8Y6RBjMMWMGObS4_D9cZ/view?usp=sharing) |
 | + | *Bonus:* người dùng thử | `validation/log.md` |
