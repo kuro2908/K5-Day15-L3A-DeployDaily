@@ -48,6 +48,9 @@ header.top{grid-area:head;display:flex;flex-wrap:wrap;align-items:flex-end;justi
   border:1px solid var(--tile-line);font-size:13.5px;color:var(--ink-2)}
 .pill .dot{width:8px;height:8px;border-radius:50%;background:var(--hoan)}
 .pill.fake .dot{background:var(--voucher)}
+.reset-btn{cursor:pointer;font-weight:500;transition:border-color .15s,color .15s,background .15s}
+.reset-btn:hover{border-color:var(--ink-3);color:var(--ink);background:#fff}
+.reset-btn[hidden]{display:none}
 .open-orders{display:none;border:0;border-radius:999px;padding:8px 14px;background:var(--ink);color:var(--paper);font-weight:600;cursor:pointer}
 
 /* ---------- cột đơn hàng ---------- */
@@ -264,6 +267,7 @@ form.compose.flash{border-color:var(--sel);box-shadow:0 0 0 4px var(--sel-bg)}
     </div>
     <div class="status" aria-live="polite">
       <button class="open-orders" id="openOrders" type="button" aria-controls="ordersCol">🧾 Đơn của bạn</button>
+      <button class="pill reset-btn" id="newChat" type="button" hidden title="Xoá ngữ cảnh hiện tại để bắt đầu cuộc trò chuyện mới">↺ Hội thoại mới</button>
       <span class="pill" id="mode"><span class="dot"></span><span>Đang kết nối…</span></span>
       <span class="pill data-pill">Dữ liệu dựng của App Mẫu</span>
     </div>
@@ -327,7 +331,7 @@ form.compose.flash{border-color:var(--sel);box-shadow:0 0 0 4px var(--sel-bg)}
 
 <script>
 const LABEL = {HOAN_TIEN:"Hoàn tiền", VOUCHER:"Tặng voucher", HOI_THEM:"Hỏi thêm", CHUYEN_NHAN_VIEN:"Chuyển nhân viên", TU_CHOI:"Từ chối"};
-const STEP = {order:"Tra đơn", history:"Lịch sử", model:"AI đọc tin", code:"Code tính", guard:"Lớp chặn", action:"Hành động", write:"AI viết lời"};
+const STEP = {context:"Ngữ cảnh", order:"Tra đơn", history:"Lịch sử", model:"AI đọc tin", code:"Code tính", guard:"Lớp chặn", action:"Hành động", write:"AI viết lời"};
 const DEMO = [  // gợi ý khi chưa chọn gì — tình huống thử nhanh
   ["Thiếu 1 ly trà sữa", "Đơn DH1001 của mình thiếu 1 Trà sữa trân châu nha"],
   ["Giao trễ hơn 1 tiếng", "ghép đơn giao trễ hẳn 1 tiếng, đơn DH1020"],
@@ -343,6 +347,9 @@ const time = iso => iso ? iso.slice(11,16) : "—";
 const fine = window.matchMedia("(hover:hover) and (pointer:fine)");
 
 let ORDERS = [];
+let chatHistory = [];
+const WELCOME_HTML = thread.innerHTML;
+const EMPTY_SLIP_HTML = $("#slipHost").innerHTML;
 const byId = id => ORDERS.find(o => o.order_id === id);
 // lựa chọn hiện tại: một đơn + (cả đơn | vài món | giờ giao)
 const sel = {id:null, kind:null, items:new Map()};   // kind: "whole" | "items" | "time" | null
@@ -587,20 +594,37 @@ function slipHTML(r){
   </div>`;
 }
 
+$("#newChat").addEventListener("click", () => {
+  if (send.disabled) return;
+  chatHistory = [];
+  thread.innerHTML = WELCOME_HTML;
+  $("#slipHost").innerHTML = EMPTY_SLIP_HTML;
+  $("#newChat").hidden = true;
+  clearSel(); renderOrders(); renderDock();
+  text.value = ""; grow();
+  if (fine.matches) text.focus();
+});
+
 async function submit(raw){
   const t = (raw || "").trim();
   if (!t || send.disabled) return;
   $("#welcome")?.remove();
+  $("#newChat").hidden = false;
   document.body.classList.remove("drawer");
   bubble("me", t); text.value = ""; grow(); send.disabled = true;
   const typing = document.createElement("div"); typing.className = "typing"; typing.setAttribute("aria-label", "Trợ lý đang trả lời");
   typing.innerHTML = "<i></i><i></i><i></i>"; thread.appendChild(typing); thread.scrollTop = thread.scrollHeight;
   try {
-    const res = await fetch("/api/message", {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({text:t})});
+    const res = await fetch("/api/message", {
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({text:t, history:chatHistory.slice(-10)})
+    });
     const r = await res.json();
     typing.remove();
     if (!res.ok) { bubble("err", r.error || "Máy chủ trả lỗi " + res.status); return; }
     if (r.error) { bubble("err", "Không gọi được model: " + r.error + ". Kiểm tra API_KEY và MODEL_NAME trong .env rồi gửi lại."); return; }
+    chatHistory.push({user:t, decision:r.decision || {}});
     bubble("bot", r.reply || "(Trợ lý không có lời nhắn)");
     const html = slipHTML(r);
     const inline = document.createElement("div"); inline.className = "inline-slip"; inline.innerHTML = html; thread.appendChild(inline);

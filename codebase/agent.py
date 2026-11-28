@@ -252,6 +252,7 @@ def answer(text: str) -> dict:
     context = {
         "ma_don_trong_tin_nhan": order_id or "(không có)",
         "don_hang": order or ("không tìm thấy đơn %s" % order_id if order_id else "chưa có mã đơn"),
+        "so_phut_tre": _late_minutes(order) if order else None,
         "lich_su_khieu_nai": history,
         "chinh_sach": {k: get_policy(k)[k] for k in ("thieu_mon", "sai_mon", "giao_tre", "an_toan")},
         "quy_dinh_chung": policy["chung"],
@@ -284,11 +285,13 @@ def answer(text: str) -> dict:
         forced = ("CHUYEN_NHAN_VIEN", comp["ly_do"])
     elif order and issue in ("thieu_mon", "sai_mon") and _claimed_over_order(text, order):
         forced = ("HOI_THEM", _claimed_over_order(text, order))          # B21: số lượng khách báo > số trong đơn
-    elif (huong == "CHUYEN_NHAN_VIEN" and issue in ("thieu_mon", "sai_mon") and comp
-          and comp["ket_luan"] == "du_dieu_kien" and not WANTS_HUMAN_RE.search(text or "")):
-        # B02: code đã kiểm đủ điều kiện (trong hạn mức, lịch sử sạch, < 24 giờ, đơn đã giao, không có ca an toàn)
-        # mà model vẫn chọn chuyển người → theo chính sách, hoàn ngay (số tiền vẫn chỉ từ code)
-        forced = ("HOAN_TIEN", comp["ly_do"])
+    elif (huong in ("CHUYEN_NHAN_VIEN", "TU_CHOI") and issue in ("thieu_mon", "sai_mon", "giao_tre") and comp
+          and comp["ket_luan"] == "du_dieu_kien"
+          and not (huong == "CHUYEN_NHAN_VIEN" and WANTS_HUMAN_RE.search(text or ""))
+          and not PRIVATE_ASK_RE.search(text or "")):
+        # Code đã kiểm đủ điều kiện (trong hạn mức, lịch sử sạch, < 24 giờ, đơn đã giao, không có ca an toàn)
+        # mà model vẫn chọn từ chối / chuyển người → theo chính sách, bồi thường đúng hình thức của code (số tiền chỉ từ code)
+        forced = ("VOUCHER" if comp["hinh_thuc"] == "voucher" else "HOAN_TIEN", comp["ly_do"])
     elif huong in ("HOAN_TIEN", "VOUCHER") and comp:
         if comp["ket_luan"] == "can_hoi_them":
             forced = ("HOI_THEM", comp["ly_do"])

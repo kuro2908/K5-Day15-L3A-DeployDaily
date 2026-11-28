@@ -27,8 +27,111 @@ import tools  # noqa: E402
 
 PAGE = os.path.join(HERE, "web", "index.html")
 TAG_RE = re.compile(r"\[QUYET_DINH\]\s*([^\n]*)")
+NEW_ORDER_RE = re.compile(r"đơn khác|một đơn khác|đơn mới|qua đơn|chuyển sang đơn", re.IGNORECASE)
+ISSUE_HINT_RE = re.compile(
+    r"thiếu|sai|nhầm món|trễ|lâu|muộn|chậm|nguội|đổ|hỏng|dị vật|tóc|gián|đau bụng|ngộ độc|dị ứng|huỷ|hủy|hoàn|voucher|nhân viên|quản lý|sđt|số điện thoại",
+    re.IGNORECASE,
+)
+BARE_NUM_RE = re.compile(r"^\s*(?:mã\s*(?:đơn)?\s*(?:là|:)?\s*)?#?(\d{4})\s*$", re.IGNORECASE)
 SCENARIO_IDS = ["DH%d" % n for n in range(1001, 1021)]
 _LOCK = __import__("threading").Lock()  # tracing dùng trạng thái chung → mỗi lúc một lượt
+
+
+def _find_order_id(text):
+    m = agent.ORDER_RE.search(text or "")
+    return ("DH" + m.group(1)) if m else ""
+
+
+def _is_valid_order(order_id):
+    return bool(order_id and tools._ORDERS["orders"].get(order_id))
+
+
+def _sanitize_history(raw):
+    if not isinstance(raw, list):
+        return []
+    out = []
+    for item in raw[-10:]:
+        if not isinstance(item, dict):
+            continue
+        user_txt = str(item.get("user") or "").strip()[:500]
+        dec = item.get("decision") if isinstance(item.get("decision"), dict) else {}
+        if user_txt:
+            out.append({
+                "user": user_txt,
+                "decision": {
+                    "huong": str(dec.get("huong") or "").strip().upper(),
+                    "ma_don": str(dec.get("ma_don") or "").strip().upper(),
+                },
+            })
+    return out
+
+
+def _apply_context(text, history):
+    """Ghép ngữ cảnh các lượt trước trong cùng phiên web rồi mới gọi agent.answer().
+    Không đổi agent.answer() nên kết quả eval / simulate giữ nguyên."""
+    hist = _sanitize_history(history)
+    if not hist:
+        return text, None
+
+    last_dec = hist[-1]["decision"]
+    last_huong = last_dec["huong"]
+    last_order = "" if last_dec["ma_don"] in ("", "-") else last_dec["ma_don"]
+
+    cur_order = _find_order_id(text)
+    if not cur_order and last_huong == "HOI_THEM" and not _is_valid_order(last_order):
+        m = BARE_NUM_RE.match(text)
+        if m:
+            cur_order = "DH" + m.group(1)
+
+    if last_huong == "HOI_THEM":
+        pending = []
+        for h in reversed(hist):
+            if h["decision"]["huong"] == "HOI_THEM":
+                pending.append(h)
+            else:
+                break
+        pending.reverse()
+
+        pending_order = ""
+        for h in reversed(pending):
+            oid = h["decision"]["ma_don"]
+            if _is_valid_order(oid):
+                pending_order = oid
+                break
+
+        if NEW_ORDER_RE.search(text):
+            return text, None
+        if cur_order and _is_valid_order(cur_order) and pending_order and cur_order != pending_order and ISSUE_HINT_RE.search(text):
+            return text, None
+
+        eff_order = cur_order or pending_order
+        eff_order_obj = tools._ORDERS["orders"].get(eff_order) if eff_order else None
+        prior_parts = []
+        for p in pending:
+            u = p["user"]
+            if eff_order:
+                u = agent.ORDER_RE.sub(lambda m: eff_order if ("DH" + m.group(1)) != eff_order else m.group(0), u)
+            if eff_order_obj and agent._claimed_over_order(u, eff_order_obj) and not agent._claimed_over_order(text, eff_order_obj) and re.search(r"\d", text):
+                for line in eff_order_obj.get("mon", []):
+                    pat = re.compile(r"\b\d+\s*(?=%s\s*%s)" % (agent.UNIT, re.escape(line["ten_mon"])), re.IGNORECASE)
+                    u = pat.sub("", u)
+            if u and u not in prior_parts:
+                prior_parts.append(u)
+
+        joined = "; ".join(prior_parts)
+        prefix = ("Đơn %s: " % eff_order) if eff_order else ""
+        effective = "%s%s (khách bổ sung: %s)" % (prefix, joined, text)
+        note_txt = "Ghép ngữ cảnh từ %d lượt trước%s" % (len(pending), (" (đơn %s)" % eff_order) if eff_order else "")
+        return effective, note_txt
+
+    if cur_order or NEW_ORDER_RE.search(text):
+        return text, None
+
+    if _is_valid_order(last_order):
+        effective = "Đơn %s (tiếp nối hội thoại vừa xử lý %s cho đơn này). Khách nhắn tiếp: %s" % (last_order, last_huong, text)
+        return effective, "Giữ ngữ cảnh đơn %s từ lượt trước" % last_order
+
+    return text, None
 
 
 def _lit(text):
@@ -56,12 +159,13 @@ def _order_card(order_id):
             "tre_phut": late}
 
 
-def handle_message(text):
+def handle_message(text, history=None):
+    effective_text, ctx_note = _apply_context(text, history)
     with _LOCK:
         tracing.begin("web")
         error = ""
         try:
-            out = agent.answer(text)["output"]
+            out = agent.answer(effective_text)["output"]
         except Exception as e:  # lỗi model / mạng: báo rõ, không giả câu trả lời
             out, error = "", "%s: %s" % (type(e).__name__, e)
         summary, events = tracing.end()
@@ -72,6 +176,8 @@ def handle_message(text):
     reply = TAG_RE.sub("", out or "").strip()
 
     steps, order_id = [], decision.get("ma_don", "-")
+    if ctx_note:
+        steps.append({"key": "context", "ok": True, "text": ctx_note})
     for e in events:
         if e["kind"] == "tool" and e["name"] == "get_order":
             o = _lit(e.get("output", ""))
@@ -151,14 +257,18 @@ class Handler(BaseHTTPRequestHandler):
             return self._send(404, {"error": "không có API này"})
         try:
             n = int(self.headers.get("Content-Length") or 0)
-            text = (json.loads(self.rfile.read(n) or b"{}").get("text") or "").strip()
+            payload = json.loads(self.rfile.read(n) or b"{}")
+            if not isinstance(payload, dict):
+                raise ValueError("payload must be an object")
+            text = (payload.get("text") or "").strip()
+            history = payload.get("history")
         except (ValueError, json.JSONDecodeError):
             return self._send(400, {"error": "Dữ liệu gửi lên không đúng dạng JSON"})
         if not text:
             return self._send(400, {"error": "Tin nhắn đang trống"})
         if len(text) > 1000:
             return self._send(400, {"error": "Tin nhắn dài quá 1000 ký tự"})
-        return self._send(200, handle_message(text))
+        return self._send(200, handle_message(text, history))
 
     def log_message(self, fmt, *args):
         sys.stderr.write("[web] " + fmt % args + "\n")
